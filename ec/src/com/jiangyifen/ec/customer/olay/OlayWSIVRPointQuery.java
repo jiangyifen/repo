@@ -91,8 +91,10 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 		try {
 
 			String userId = "13031226136";
+			
+			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
 
-			MyOlayIVRSrv srv = new MyOlayIVRSrv();
+			MyOlayIVRSrv srv = new MyOlayIVRSrv(url);
 
 			MyOlayIVRSrvPortType pt = srv.getMyOlayIVRSrvHttpPort();
 
@@ -134,6 +136,9 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 		} catch (RemoteException e) {
 
 			logger.error(e.getMessage(), e);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

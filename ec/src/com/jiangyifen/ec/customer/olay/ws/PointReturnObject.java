@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>PointReturnObject complex type的 Java 类。
+ * <p>PointReturnObject complex type锟斤拷 Java 锟洁。
  * 
- * <p>以下模式片段指定包含在此类中的预期内容。
+ * <p>锟斤拷锟斤拷模式片锟斤拷指锟斤拷锟斤拷锟节达拷锟斤拷锟叫碉拷预锟斤拷锟斤拷锟捷★拷
  * 
  * <pre>
  * &lt;complexType name="PointReturnObject">
@@ -37,14 +37,14 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class PointReturnObject {
 
-    @XmlElementRef(name = "desc", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "desc", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> desc;
     protected Integer exitCode;
-    @XmlElementRef(name = "result", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "result", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<SMSMemberPoint> result;
 
     /**
-     * 获取desc属性的值。
+     * 锟斤拷取desc锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -56,7 +56,7 @@ public class PointReturnObject {
     }
 
     /**
-     * 设置desc属性的值。
+     * 锟斤拷锟斤拷desc锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -68,7 +68,7 @@ public class PointReturnObject {
     }
 
     /**
-     * 获取exitCode属性的值。
+     * 锟斤拷取exitCode锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -80,7 +80,7 @@ public class PointReturnObject {
     }
 
     /**
-     * 设置exitCode属性的值。
+     * 锟斤拷锟斤拷exitCode锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -92,7 +92,7 @@ public class PointReturnObject {
     }
 
     /**
-     * 获取result属性的值。
+     * 锟斤拷取result锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -104,7 +104,7 @@ public class PointReturnObject {
     }
 
     /**
-     * 设置result属性的值。
+     * 锟斤拷锟斤拷result锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is

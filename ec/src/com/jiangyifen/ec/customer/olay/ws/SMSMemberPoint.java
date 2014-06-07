@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>SMSMemberPoint complex type的 Java 类。
+ * <p>SMSMemberPoint complex type锟斤拷 Java 锟洁。
  * 
- * <p>以下模式片段指定包含在此类中的预期内容。
+ * <p>锟斤拷锟斤拷模式片锟斤拷指锟斤拷锟斤拷锟节达拷锟斤拷锟叫碉拷预锟斤拷锟斤拷锟捷★拷
  * 
  * <pre>
  * &lt;complexType name="SMSMemberPoint">
@@ -45,21 +45,21 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SMSMemberPoint {
 
-    @XmlElementRef(name = "accountCategory", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "accountCategory", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> accountCategory;
     protected Integer availablePoint;
-    @XmlElementRef(name = "city", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "city", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> city;
-    @XmlElementRef(name = "memberID", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "memberID", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> memberID;
-    @XmlElementRef(name = "name", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "name", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> name;
-    @XmlElementRef(name = "placeCode", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "placeCode", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> placeCode;
     protected Integer totalPoint;
 
     /**
-     * 获取accountCategory属性的值。
+     * 锟斤拷取accountCategory锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -71,7 +71,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 设置accountCategory属性的值。
+     * 锟斤拷锟斤拷accountCategory锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -83,7 +83,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 获取availablePoint属性的值。
+     * 锟斤拷取availablePoint锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -95,7 +95,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 设置availablePoint属性的值。
+     * 锟斤拷锟斤拷availablePoint锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -107,7 +107,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 获取city属性的值。
+     * 锟斤拷取city锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -119,7 +119,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 设置city属性的值。
+     * 锟斤拷锟斤拷city锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -131,7 +131,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 获取memberID属性的值。
+     * 锟斤拷取memberID锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -143,7 +143,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 设置memberID属性的值。
+     * 锟斤拷锟斤拷memberID锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -155,7 +155,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 获取name属性的值。
+     * 锟斤拷取name锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -167,7 +167,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 设置name属性的值。
+     * 锟斤拷锟斤拷name锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -179,7 +179,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 获取placeCode属性的值。
+     * 锟斤拷取placeCode锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -191,7 +191,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 设置placeCode属性的值。
+     * 锟斤拷锟斤拷placeCode锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -203,7 +203,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 获取totalPoint属性的值。
+     * 锟斤拷取totalPoint锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -215,7 +215,7 @@ public class SMSMemberPoint {
     }
 
     /**
-     * 设置totalPoint属性的值。
+     * 锟斤拷锟斤拷totalPoint锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is

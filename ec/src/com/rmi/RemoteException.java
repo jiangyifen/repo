@@ -10,9 +10,9 @@ import com.lang.Throwable;
 
 
 /**
- * <p>RemoteException complex type的 Java 类。
+ * <p>RemoteException complex type锟斤拷 Java 锟洁。
  * 
- * <p>以下模式片段指定包含在此类中的预期内容。
+ * <p>锟斤拷锟斤拷模式片锟斤拷指锟斤拷锟斤拷锟节达拷锟斤拷锟叫碉拷预锟斤拷锟斤拷锟捷★拷
  * 
  * <pre>
  * &lt;complexType name="RemoteException">
@@ -36,13 +36,13 @@ import com.lang.Throwable;
 })
 public class RemoteException {
 
-    @XmlElementRef(name = "cause", namespace = "http://rmi.java", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "cause", namespace = "http://rmi.java", type = JAXBElement.class)
     protected JAXBElement<Throwable> cause;
-    @XmlElementRef(name = "message", namespace = "http://rmi.java", type = JAXBElement.class, required = false)
+    @XmlElementRef(name = "message", namespace = "http://rmi.java", type = JAXBElement.class)
     protected JAXBElement<String> message;
 
     /**
-     * 获取cause属性的值。
+     * 锟斤拷取cause锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -54,7 +54,7 @@ public class RemoteException {
     }
 
     /**
-     * 设置cause属性的值。
+     * 锟斤拷锟斤拷cause锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
@@ -66,7 +66,7 @@ public class RemoteException {
     }
 
     /**
-     * 获取message属性的值。
+     * 锟斤拷取message锟斤拷锟皆碉拷值锟斤拷
      * 
      * @return
      *     possible object is
@@ -78,7 +78,7 @@ public class RemoteException {
     }
 
     /**
-     * 设置message属性的值。
+     * 锟斤拷锟斤拷message锟斤拷锟皆碉拷值锟斤拷
      * 
      * @param value
      *     allowed object is
