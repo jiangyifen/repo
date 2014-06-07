@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+        <!-- Hibernate -->
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <property name="driverClass" value="org.postgresql.Driver" />
+
+                <property name="jdbcUrl" value="jdbc:postgresql://10.0.1.37/asterisk" />
+
+                <property name="user" value="asterisk" />
+                <property name="password" value="asterisk" />
+                <property name="maxPoolSize" value="30" />
+                <property name="minPoolSize" value="5" />
+                <property name="initialPoolSize" value="5" />
+                <property name="maxIdleTime" value="20" />
+        </bean>
+
+        <bean id="sessionFactory"
+                class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+                <property name="dataSource" ref="dataSource" />
+                <property name="mappingResources">
+                        <list>
+                                <value>User.hbm.xml</value>
+                                <value>Role.hbm.xml</value>
+                                <value>Department.hbm.xml</value>
+                                <value>RoleAction.hbm.xml</value>
+                                <value>Cdr.hbm.xml</value>
+                                <value>Voicemail.hbm.xml</value>
+                                <value>Queue.hbm.xml</value>
+                                <value>QueueMember.hbm.xml</value>
+                                <value>Sip.hbm.xml</value>
+                                <value>CustomerManager.hbm.xml</value>
+                                <value>CustomerPhoneNum.hbm.xml</value>
+                                <value>UserLoginRecord.hbm.xml</value>
+                                <value>DialTask.hbm.xml</value>
+                                <value>DialTaskItem.hbm.xml</value>
+                                <value>DialTaskLog.hbm.xml</value>
+                                <value>MyCustomerLog.hbm.xml</value>
+                                <value>QueueEntryEventLog.hbm.xml</value>
+                                <value>QueueCallerAbandonEventLog.hbm.xml</value>
+                                <value>QueueMemberPauseLog.hbm.xml</value>
+                                <value>CustomerSatisfactionInvestigationLog.hbm.xml</value>
+                                <value>BlackListItem.hbm.xml</value>
+                                <value>MeetMeRoom.hbm.xml</value>
+                                <value>SmUserInfo.hbm.xml</value>
+                                <value>SmTask.hbm.xml</value>
+                                <value>OutsideLine.hbm.xml</value>
+                                <value>Notice.hbm.xml</value>
+                                <value>NoticeItem.hbm.xml</value>
+                                <value>Config.hbm.xml</value>
+                                <value>ExtenAndOutline.hbm.xml</value>
+                                <value>ShiftConfig.hbm.xml</value>
+                                <value>IVRLog.hbm.xml</value>
+                                <value>LinkLog.hbm.xml</value>
+                        </list>
+                </property>
+                <property name="hibernateProperties">
+                        <props>
+                                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                                <prop key="show_sql">true</prop>
+                                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                                <prop key="hibernate.jdbc.batch_size">20</prop>
+                        </props>
+                </property>
+        </bean>
+
+        <bean id="userDao" class="com.jiangyifen.ec.dao.UserDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="userManager" class="com.jiangyifen.ec.biz.UserManagerImpl">
+                <property name="userDao" ref="userDao" />
+        </bean>
+
+        <bean id="roleDao" class="com.jiangyifen.ec.dao.RoleDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="roleManager" class="com.jiangyifen.ec.biz.RoleManagerImpl">
+                <property name="roleDao" ref="roleDao" />
+        </bean>
+
+        <bean id="departmentDao" class="com.jiangyifen.ec.dao.DepartmentDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="departmentManager" class="com.jiangyifen.ec.biz.DepartmentManagerImpl">
+                <property name="departmentDao" ref="departmentDao" />
+        </bean>
+
+        <bean id="roleActionDao" class="com.jiangyifen.ec.dao.RoleActionDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="roleActionManager" class="com.jiangyifen.ec.biz.RoleActionManagerImpl">
+                <property name="roleActionDao" ref="roleActionDao" />
+        </bean>
+
+        <bean id="cdrDao" class="com.jiangyifen.ec.dao.CdrDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="cdrManager" class="com.jiangyifen.ec.biz.CdrManagerImpl">
+                <property name="cdrDao" ref="cdrDao" />
+        </bean>
+
+        <bean id="vmDao" class="com.jiangyifen.ec.dao.VoicemailDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="vmManager" class="com.jiangyifen.ec.biz.VoicemailManagerImpl">
+                <property name="vmDao" ref="vmDao" />
+        </bean>
+
+        <bean id="queueDao" class="com.jiangyifen.ec.dao.QueueDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="queueManager" class="com.jiangyifen.ec.biz.QueueManagerImpl">
+                <property name="queueDao" ref="queueDao" />
+        </bean>
+
+        <bean id="queueMemberDao" class="com.jiangyifen.ec.dao.QueueMemberDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="queueMemberManager" class="com.jiangyifen.ec.biz.QueueMemberManagerImpl">
+                <property name="queueMemberDao" ref="queueMemberDao" />
+        </bean>
+
+        <bean id="sipDao" class="com.jiangyifen.ec.dao.SipDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="sipManager" class="com.jiangyifen.ec.biz.SipManagerImpl">
+                <property name="sipDao" ref="sipDao" />
+        </bean>
+
+        <bean id="customerPhoneNumDao" class="com.jiangyifen.ec.dao.CustomerPhoneNumDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="customerPhoneNumManager" class="com.jiangyifen.ec.biz.CustomerPhoneNumManagerImpl">
+                <property name="customerPhoneNumDao" ref="customerPhoneNumDao" />
+        </bean>
+
+        <bean id="customerManagerDao" class="com.jiangyifen.ec.dao.CustomerManagerDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="customerManagerManager" class="com.jiangyifen.ec.biz.CustomerManagerManagerImpl">
+                <property name="customerManagerDao" ref="customerManagerDao" />
+        </bean>
+
+        <bean id="userLoginRecordDao" class="com.jiangyifen.ec.dao.UserLoginRecordDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="userLoginRecordManager" class="com.jiangyifen.ec.biz.UserLoginRecordManagerImpl">
+                <property name="userLoginRecordDao" ref="userLoginRecordDao" />
+        </bean>
+
+        <bean id="dialTaskDao" class="com.jiangyifen.ec.dao.DialTaskDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="dialTaskManager" class="com.jiangyifen.ec.biz.DialTaskManagerImpl">
+                <property name="dialTaskDao" ref="dialTaskDao" />
+        </bean>
+
+        <bean id="dialTaskItemDao" class="com.jiangyifen.ec.dao.DialTaskItemDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="dialTaskItemManager" class="com.jiangyifen.ec.biz.DialTaskItemManagerImpl">
+                <property name="dialTaskItemDao" ref="dialTaskItemDao" />
+        </bean>
+
+        <bean id="dialTaskLogDao" class="com.jiangyifen.ec.dao.DialTaskLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="dialTaskLogManager" class="com.jiangyifen.ec.biz.DialTaskLogManagerImpl">
+                <property name="dialTaskLogDao" ref="dialTaskLogDao" />
+        </bean>
+
+        <bean id="myCustomerLogDao" class="com.jiangyifen.ec.dao.MyCustomerLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="myCustomerLogManager" class="com.jiangyifen.ec.biz.MyCustomerLogManagerImpl">
+                <property name="myCustomerLogDao" ref="myCustomerLogDao" />
+        </bean>
+
+        <bean id="queueEntryEventLogDao" class="com.jiangyifen.ec.dao.QueueEntryEventLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="queueEntryEventLogManager" class="com.jiangyifen.ec.biz.QueueEntryEventLogManagerImpl">
+                <property name="queueEntryEventLogDao" ref="queueEntryEventLogDao" />
+        </bean>
+
+        <bean id="queueCallerAbandonEventLogDao"
+                class="com.jiangyifen.ec.dao.QueueCallerAbandonEventLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="queueCallerAbandonEventLogManager"
+                class="com.jiangyifen.ec.biz.QueueCallerAbandonEventLogManagerImpl">
+                <property name="queueCallerAbandonEventLogDao" ref="queueCallerAbandonEventLogDao" />
+        </bean>
+
+        <bean id="queueMemberPauseLogDao" class="com.jiangyifen.ec.dao.QueueMemberPauseLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="queueMemberPauseLogManager" class="com.jiangyifen.ec.biz.QueueMemberPauseLogManagerImpl">
+                <property name="queueMemberPauseLogDao" ref="queueMemberPauseLogDao" />
+        </bean>
+
+        <bean id="customerSatisfactionInvestigationLogDao"
+                class="com.jiangyifen.ec.dao.CustomerSatisfactionInvestigationLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="customerSatisfactionInvestigationLogManager"
+                class="com.jiangyifen.ec.biz.CustomerSatisfactionInvestigationLogManagerImpl">
+                <property name="customerSatisfactionInvestigationLogDao" ref="customerSatisfactionInvestigationLogDao" />
+        </bean>
+
+        <bean id="blackListItemDao" class="com.jiangyifen.ec.dao.BlackListItemDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="blackListItemManager" class="com.jiangyifen.ec.biz.BlackListItemManagerImpl">
+                <property name="blackListItemDao" ref="blackListItemDao" />
+        </bean>
+
+        <bean id="meetMeRoomDao" class="com.jiangyifen.ec.dao.MeetMeRoomDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="meetMeRoomManager" class="com.jiangyifen.ec.biz.MeetMeRoomManagerImpl">
+                <property name="meetMeRoomDao" ref="meetMeRoomDao" />
+        </bean>
+
+        <bean id="smUserInfoDao" class="com.jiangyifen.ec.dao.SmUserInfoDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="smUserInfoManager" class="com.jiangyifen.ec.biz.SmUserInfoManagerImpl">
+                <property name="smUserInfoDao" ref="smUserInfoDao" />
+        </bean>
+
+        <bean id="smTaskDao" class="com.jiangyifen.ec.dao.SmTaskDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="smTaskManager" class="com.jiangyifen.ec.biz.SmTaskManagerImpl">
+                <property name="smTaskDao" ref="smTaskDao" />
+        </bean>
+
+        <bean id="outsideLineDao" class="com.jiangyifen.ec.dao.OutsideLineDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="outsideLineManager" class="com.jiangyifen.ec.biz.OutsideLineManagerImpl">
+                <property name="outsideLineDao" ref="outsideLineDao" />
+        </bean>
+
+        <bean id="noticeDao" class="com.jiangyifen.ec.dao.NoticeDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="noticeManager" class="com.jiangyifen.ec.biz.NoticeManagerImpl">
+                <property name="noticeDao" ref="noticeDao" />
+        </bean>
+
+        <bean id="noticeItemDao" class="com.jiangyifen.ec.dao.NoticeItemDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="noticeItemManager" class="com.jiangyifen.ec.biz.NoticeItemManagerImpl">
+                <property name="noticeItemDao" ref="noticeItemDao" />
+        </bean>
+
+        <bean id="configDao" class="com.jiangyifen.ec.dao.ConfigDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="configManager" class="com.jiangyifen.ec.biz.ConfigManagerImpl">
+                <property name="configDao" ref="configDao" />
+        </bean>
+
+        <bean id="extenAndOutlineDao" class="com.jiangyifen.ec.dao.ExtenAndOutlineDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="extenAndOutlineManager" class="com.jiangyifen.ec.biz.ExtenAndOutlineManagerImpl">
+                <property name="extenAndOutlineDao" ref="extenAndOutlineDao" />
+        </bean>
+
+        <bean id="shiftConfigDao" class="com.jiangyifen.ec.dao.ShiftConfigDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="shiftConfigManager" class="com.jiangyifen.ec.biz.ShiftConfigManagerImpl">
+                <property name="shiftConfigDao" ref="shiftConfigDao" />
+        </bean>
+
+        <bean id="ivrLogDao" class="com.jiangyifen.ec.dao.IVRLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="ivrLogManager" class="com.jiangyifen.ec.biz.IVRLogManagerImpl">
+                <property name="ivrLogDao" ref="ivrLogDao" />
+        </bean>
+
+        <bean id="linkLogDao" class="com.jiangyifen.ec.dao.LinkLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="linkLogManager" class="com.jiangyifen.ec.biz.LinkLogManagerImpl">
+                <property name="linkLogDao" ref="linkLogDao" />
+        </bean>
+
+
+
+        <bean id="transactionManager"
+                class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+
+        <bean id="transactionInterceptor"
+                class="org.springframework.transaction.interceptor.TransactionInterceptor">
+                <property name="transactionManager" ref="transactionManager" />
+                <property name="transactionAttributes">
+                        <props>
+                                <prop key="get*">PROPAGATION_REQUIRED,readOnly
+                                </prop>
+                                <prop key="*">PROPAGATION_REQUIRED</prop>
+                        </props>
+                </property>
+        </bean>
+
+        <!-- Bean 后处理器 -->
+        <bean
+                class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+                <property name="beanNames">
+                        <list>
+                                <value>userManager</value>
+                                <value>roleManager</value>
+                                <value>roleActionManager</value>
+                                <value>departmentManager</value>
+                                <value>cdrManager</value>
+                                <value>vmManager</value>
+                                <value>queueManager</value>
+                                <value>queueMemberManager</value>
+                                <value>sipManager</value>
+                                <value>customerPhoneNumManager</value>
+                                <value>customerManagerManager</value>
+                                <value>userLoginRecordManager</value>
+                                <value>dialTaskManager</value>
+                                <value>dialTaskItemManager</value>
+                                <value>dialTaskLogManager</value>
+                                <value>myCustomerLogManager</value>
+                                <value>queueEntryEventLogManager</value>
+                                <value>queueCallerAbandonEventLogManager</value>
+                                <value>queueMemberPauseLogManager</value>
+                                <value>customerSatisfactionInvestigationLogManager</value>
+                                <value>blackListItemManager</value>
+                                <value>meetMeRoomManager</value>
+                                <value>smUserInfoManager</value>
+                                <value>smTaskManager</value>
+                                <value>outsideLineManager</value>
+
+                                <value>noticeManager</value>
+                                <value>noticeItemManager</value>
+                                <value>configManager</value>
+                                <value>extenAndOutlineManager</value>
+                                <value>shiftConfigManager</value>
+                                <value>ivrLogManager</value>
+                                <value>linkLogManager</value>
+                        </list>
+                </property>
+
+                <property name="interceptorNames">
+                        <list>
+                                <value>transactionInterceptor</value>
+                        </list>
+                </property>
+        </bean>
+
+        <!-- Config -->
+        <bean id="config" class="com.jiangyifen.ec.util.Config" />
+
+        <!-- BlackListData -->
+        <bean id="blackListData" class="com.jiangyifen.ec.util.BlackListData">
+                <property name="blackListItemManager" ref="blackListItemManager" />
+        </bean>
+
+        <!-- Share Date -->
+        <bean id="shareData" class="com.jiangyifen.ec.util.ShareData">
+                <property name="sipManager" ref="sipManager" />
+                <property name="userManager" ref="userManager" />
+                <property name="queueManager" ref="queueManager" />
+        </bean>
+
+        <!-- Asterisk-Java FastAGIServer -->
+        <bean id="myAgiServer" class="com.jiangyifen.ec.fastagiserver.MyAgiServer" />
+
+        <!-- Asterisk-Java ManagerAPI --> 
+<!-- 
+        <bean id="myManager" class="com.jiangyifen.ec.manager.MyManager">
+                <property name="cdrManager" ref="cdrManager" />
+                <property name="sipManager" ref="sipManager" />
+                <property name="userManager" ref="userManager" />
+                <property name="queueEntryEventLogManager" ref="queueEntryEventLogManager" />
+                <property name="queueCallerAbandonEventLogManager" ref="queueCallerAbandonEventLogManager" />
+                <property name="queueMemberPauseLogManager" ref="queueMemberPauseLogManager" />
+        </bean>
+ -->
+        <!-- DateRefresh -->
+        <bean id="todayWorkloadDateRefresh" class="com.jiangyifen.ec.backgroundthreads.TodayWorkloadDateRefresh" />
+        <bean id="pastWorkloadDateRefresh" class="com.jiangyifen.ec.backgroundthreads.PastWorkloadDateRefresh" />
+        <bean id="queueStatusRefresh" class="com.jiangyifen.ec.backgroundthreads.QueueStatusRefresh" />
+
+        <bean id="cdrUpdateThread1" class="com.jiangyifen.ec.backgroundthreads.CdrUpdateThread" />
+        <bean id="cdrUpdateThread2" class="com.jiangyifen.ec.backgroundthreads.CdrUpdateThread" />
+        <bean id="cdrUpdateThread3" class="com.jiangyifen.ec.backgroundthreads.CdrUpdateThread" />
+        <bean id="cdrUpdateThread4" class="com.jiangyifen.ec.backgroundthreads.CdrUpdateThread" />
+        <bean id="cdrUpdateThread5" class="com.jiangyifen.ec.backgroundthreads.CdrUpdateThread" />
+
+        <!-- RunOnetime -->
+        <bean id="runOnetime" class="com.jiangyifen.ec.backgroundthreads.RunOnetime" />
+
+        <!-- DiskSpaceMonitor -->
+        <bean id="diskSpaceMonitor" class="com.jiangyifen.ec.util.DiskSpaceMonitor" />
+
+        <!-- MonitorFileTransfer -->
+        <bean id="monitorFileTransfer" class="com.jiangyifen.ec.util.MonitorFileTransfer" />
+
+        <!-- UserLoginStatusClean -->
+        <bean id="userLoginStatusClean" class="com.jiangyifen.ec.util.UserLoginStatusClean">
+                <property name="sipManager" ref="sipManager" />
+        </bean>
+
+        <!-- CrmDialTaskAutoAssign -->
+        <bean id="crmDialTaskAutoAssign" class="com.jiangyifen.ec.util.CrmDialTaskAutoAssign">
+                <property name="dialTaskManager" ref="dialTaskManager" />
+                <property name="dialTaskItemManager" ref="dialTaskItemManager" />
+                <property name="smTaskManager" ref="smTaskManager" />
+        </bean>
+
+        <!-- VoiceMail Transfer -->
+<!-- 
+        <bean id="vmTransfer" class="com.jiangyifen.ec.util.VoicemailTransfer">
+                <property name="vmManager" ref="vmManager" />
+        </bean>
+ -->
+ 
+        <!-- DialTaskWorkThreadManager -->
+        <bean id="dialTaskWorkThreadManager" class="com.jiangyifen.ec.autodialout.DialTaskWorkThreadManager">
+                <property name="dialTaskItemManager" ref="dialTaskItemManager" />
+                <property name="dialTaskManager" ref="dialTaskManager" />
+        </bean>
+
+        <!-- DialTaskLogThread -->
+        <bean id="dialTaskLogThread" class="com.jiangyifen.ec.autodialout.DialTaskLogThread">
+                <property name="dialTaskManager" ref="dialTaskManager" />
+                <property name="dialTaskItemManager" ref="dialTaskItemManager" />
+                <property name="dialTaskLogManager" ref="dialTaskLogManager" />
+                <property name="myCustomerLogManager" ref="myCustomerLogManager" />
+        </bean>
+
+        <!-- SmSenderManager -->
+        <bean id="smSenderManager" class="com.jiangyifen.ec.sms.SmSenderManager">
+                <property name="smUserInfoManager" ref="smUserInfoManager" />
+                <property name="smTaskManager" ref="smTaskManager" />
+                <property name="dialTaskItemManager" ref="dialTaskItemManager" />
+        </bean>
+
+        <!-- CrmPopServer -->
+        <bean id="crmPopServer" class="com.jiangyifen.ec.popserver.CrmPopServer" />
+
+        <!-- ActionSendQueue -->
+        <bean id="actionSendQueue" class="com.jiangyifen.ec.manager.ActionSendQueue" />
+
+        <!-- reportGenerator -->
+<!-- 
+        <bean id="reportGenerator" class="com.jiangyifen.ec.report.internal.ReportGenerator">
+                <property name="reports">
+                        <list>
+                                <value>com.jiangyifen.ec.report.ReportUserLoginTimelength</value>
+                                <value>com.jiangyifen.ec.report.ReportQueueUserPause</value>
+                                <value>com.jiangyifen.ec.report.ReportUserIncomingWorkload</value>
+                                <value>com.jiangyifen.ec.report.ReportUserOutgoingWorkload</value>
+                                <value>com.jiangyifen.ec.report.ReportQueueEntryEventLogDistinct</value>
+                                <value>com.jiangyifen.ec.report.ReportQueueCallerAbandonEventLogDistinct</value>
+                                <value>com.jiangyifen.ec.report.ReportConcurrent</value>
+                        </list>
+                </property>
+        </bean>
+ -->
+        <!-- Customer --> 
+        <bean id="olayAMI" class="com.jiangyifen.ec.customer.olay.OlayAMI"/>
+
+
+</beans>

@@ -1,0 +1,72 @@
+.hb {
+  padding-top: 1px;
+  padding-right: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  cursor: default;
+  text-align: center;
+}
+
+.usgSlice050, .usgSlice080, .usgSlice100, .usgFill100, .usgFill080, .usgFill050,
+.ioSlice050, .ioSlice080, .ioSlice100, .ioFill100, .ioFill080, .ioFill050 {
+  width: 2px;
+  height: 9px;
+  border: solid 1px #336699;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  background-color: #99CCFF;
+}
+
+.ioSlice050, .ioSlice080, .ioSlice100, .ioFill100, .ioFill080, .ioFill050 {
+  width: 2px;
+  height: 5px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.usgFill050, .ioFill050 {
+  border: solid 1px #009900;
+  background-color: #00FF00;
+}
+
+.usgFill080, .ioFill080 {
+  border: solid 1px #CC6600;
+  background-color: #FFCC00;
+}
+
+.usgFill100, .ioFill100 {
+  border: solid 1px #990000;
+  background-color: #FF0000;
+}
+
+.usgSlice050, .ioSlice050, .usgSlice080, .ioSlice080, .usgSlice100, .ioSlice100 {
+  border: solid 1px #CCCCCC;
+  background-color: #E6E6E6;
+}
+
+.hbSlice, .hbUgly, .hbBad, .hbGood {
+  width: 9px;
+  height: 2px;
+  border: solid 1px #333333;
+  margin-top: 1px;
+}
+
+.hbSlice {
+  border: solid 1px #CCCCCC;
+  background-color: #E6E6E6;
+}
+
+.hbGood {
+  border-color: #009900;
+  background-color: #00FF00;
+}
+
+.hbBad {
+  border-color: #CC6600;
+  background-color: #FFCC00;
+}
+
+.hbUgly {
+  border-color: #990000;
+  background-color: #FF0000;
+}

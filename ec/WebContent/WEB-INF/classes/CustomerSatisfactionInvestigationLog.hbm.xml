@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.CustomerSatisfactionInvestigationLog" table="ec_customer_satisfaction_investigation_log">
+        <id name="id">
+            <column name="id" not-null="true"/>
+            <generator class="identity"/>
+        </id>
+        <property name="date" not-null="true"/>
+        <property name="calleridNum" not-null="true" length="32"/>
+        <property name="exten" not-null="false" length="8"/>
+        <property name="username" not-null="false" length="32"/>
+        <property name="uniqueid" not-null="false" length="32"/>
+        <property name="p1" not-null="false" length="32"/>
+        <property name="p2" not-null="false" length="32"/>
+		<property name="sync" not-null="false" length="1"/>
+	</class>
+</hibernate-mapping>

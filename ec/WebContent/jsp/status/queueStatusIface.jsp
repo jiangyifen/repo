@@ -1,0 +1,3 @@
+﻿<%@ page language="java" contentType="text/html; charset=gb2312" pageEncoding="utf-8"%><%@ taglib prefix="s" uri="/struts-tags"%>
+<s:iterator value="queueMemberList">
+name:<s:property value="name"/>;location:<s:property value="location"/>;paused:<s:property value="paused"/>;status:<s:property value="status"/>;hid:<s:property value="memberName"/>;linkedCallerId:<s:property value="internalActionId"/>;seconds:<s:property value="membership"/></s:iterator>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.Config" table="ec_config">
+	
+		<id name="key">
+			<column name="key" not-null="true" length="64"/>
+		</id>
+
+        <property name="value" length="64"/>
+
+	</class>
+</hibernate-mapping>

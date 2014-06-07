@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.Department" table="ec_department">
+		<id name="departmentname">
+			<column name="departmentname" not-null="true" length="32" />
+		</id>
+		<property name="description" length="30" />
+ 
+		<set name="roles" access="property" table="ec_role_department_link"
+			cascade="save-update" lazy="false" inverse="true" fetch="select">
+			<key column="departmentname" />
+			<many-to-many class="com.jiangyifen.ec.dao.Role" column="rolename" />
+		</set>
+
+		<many-to-one name="parent" column="pdname"/>
+        <set name="children" lazy="false" inverse="true"  cascade="none">
+                <key column="pdname"/>
+                <one-to-many class="com.jiangyifen.ec.dao.Department"/>
+        </set>
+
+	</class>
+
+</hibernate-mapping>

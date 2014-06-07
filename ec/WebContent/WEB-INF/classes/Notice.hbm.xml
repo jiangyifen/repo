@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.Notice" table="ec_notice">
+		<id name="id">
+			<column name="id" not-null="true" />
+			<generator class="identity" />
+		</id>
+		<property name="title" not-null="true" length="255" />
+		<property name="content" not-null="true" length="102400" />
+		<property name="date" not-null="true" />
+		<property name="description" not-null="true" length="1024" />
+
+		<set name="noticeItems" table="ec_notice_item" lazy="false" cascade="all" inverse="true">
+			<key column="noticeid"/>
+			<one-to-many class="com.jiangyifen.ec.dao.NoticeItem" />
+		</set>
+ 
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.SmTask" table="ec_sm_task">
+		<id name="id">
+			<column name="id" not-null="true"/>
+			<generator class="identity"/>
+		</id>
+        <property name="content" not-null="true" length="70"/>
+        <property name="mobile" not-null="true" length="32"/>
+        <property name="accountId" not-null="true" length="32"/>
+        <property name="srcTermId" not-null="true" length="32"/>
+        <property name="status" not-null="true" length="32"/>
+        <property name="penalty" not-null="true" length="8"/>
+        <property name="timestamp" not-null="true"/>
+        <property name="msgid" not-null="false" length="32"/>
+        <property name="taskSubmitTime" not-null="false"/>
+        <property name="taskReceiveReportTime" not-null="false"/>
+        <property name="senderId" not-null="false" length="32"/>
+        <property name="department" not-null="false" length="32"/>
+        <property name="batchNumber" not-null="false" length="64"/>
+        <property name="userfield" not-null="false" length="128"/>
+	</class>
+</hibernate-mapping>

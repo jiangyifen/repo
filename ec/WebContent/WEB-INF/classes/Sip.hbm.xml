@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.Sip" table="sip_conf">
+	
+		<id name="id">
+			<column name="id" not-null="true"/>
+			<generator class="identity"/>
+		</id>
+	
+        <property name="name"/>
+        <property name="host"/>
+        <property name="nat"/>
+        <property name="type"/>
+        <property name="accountcode"/>
+        <property name="amaflags"/>
+        <property name="calllimit" column='"call-limit"'/>
+        <property name="callgroup"/>
+        <property name="callerid"/>
+        <property name="cancallforward"/>
+        <property name="canreinvite"/>
+        <property name="context"/>
+        <property name="defaultip"/>
+        <property name="dtmfmode"/>
+        <property name="fromuser"/>
+        <property name="fromdomain"/>
+        <property name="language"/>
+        <property name="mailbox"/>
+        <property name="md5secret"/>
+        <property name="permit"/>
+        <property name="deny"/>
+        <property name="mask"/>
+        <property name="musiconhold"/>
+        <property name="pickupgroup"/>
+        <property name="qualify"/>
+        <property name="regexten"/>
+        <property name="restrictcid"/>
+        <property name="rtptimeout"/>
+        <property name="rtpholdtimeout"/>
+        <property name="secret"/>
+        <property name="setvar"/>
+        <property name="disallow"/>
+        <property name="allow"/>
+        <property name="fullcontact"/>
+        <property name="ipaddr"/>
+        <property name="port"/>
+        <property name="regserver"/>
+        <property name="regseconds"/>
+        <property name="lastms"/>
+        <property name="username"/>
+        <property name="defaultuser"/>
+        <property name="subscribecontext"/>
+        <property name="dpmt"/>
+        <property name="loginusername"/>
+	</class>
+</hibernate-mapping>

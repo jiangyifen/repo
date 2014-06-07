@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.UserLoginRecord" table="ec_user_login_record">
+        <id name="id">
+            <column name="id" not-null="true"/>
+            <generator class="identity"/>
+        </id>
+        <property name="username" not-null="true" length="32"/>
+        <property name="exten" not-null="true" length="16"/>
+        <property name="loginDate" not-null="false"/>
+        <property name="logoutDate" not-null="false"/>
+	</class>
+</hibernate-mapping>

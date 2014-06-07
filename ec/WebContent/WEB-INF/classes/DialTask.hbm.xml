@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.DialTask" table="ec_dial_task">
+        <id name="id">
+            <column name="id" not-null="true"/>
+            <generator class="identity"/>
+        </id>
+        <property name="taskName" not-null="true" length="128"/>
+        <property name="queueName" not-null="true" length="32"/>
+        <property name="status" not-null="true" length="16"/>
+        <property name="rate" not-null="true" length="8"/>
+        <property name="startDate" not-null="false"/>
+        <property name="endDate" not-null="false"/>
+        <property name="autoAssign" not-null="false"/>
+        <property name="perority" not-null="false"/>
+        <property name="hasAssignedToday" not-null="false"/>
+	</class>
+</hibernate-mapping>

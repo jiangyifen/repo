@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.Queue" table="queue_table">
+		<id name="name">
+			<column name="name" not-null="true" />
+		</id>
+		<property name="musiconhold" />
+		<property name="announce" />
+		<property name="context" />
+		<property name="timeout" />
+		<property name="monitor_join" />
+		<property name="monitor_format" />
+		<property name="queue_youarenext" />
+		<property name="queue_thereare" />
+		<property name="queue_callswaiting" />
+		<property name="queue_holdtime" />
+		<property name="queue_minutes" />
+		<property name="queue_seconds" />
+		<property name="queue_lessthan" />
+		<property name="queue_thankyou" />
+		<property name="queue_reporthold" />
+		<property name="announce_frequency" />
+		<property name="queue_periodic_announce" />
+		<property name="announce_round_seconds" />
+		<property name="announce_holdtime" />
+		<property name="retry" />
+		<property name="wrapuptime" />
+		<property name="maxlen" />
+		<property name="servicelevel" />
+		<property name="strategy" />
+		<property name="joinempty" />
+		<property name="leavewhenempty" />
+		<property name="eventmemberstatus" />
+		<property name="eventwhencalled" />
+		<property name="reportholdtime" />
+		<property name="memberdelay" />
+		<property name="weight" />
+		<property name="timeoutrestart" />
+		<property name="setinterfacevar" />
+		<property name="autopause" />
+		
+		<!-- none asterisk realtime fields -->
+		<property name="description" not-null="true"/>
+		<property name="dynamicMember" not-null="true"/>
+		
+		<set name="members" table="queue_member_table" inverse="true"
+			cascade="all" order-by="penalty" lazy="false">
+			<key column="queue_name"/>
+			<one-to-many class="com.jiangyifen.ec.dao.QueueMember" />
+		</set>
+
+		<set name="users" access="property" table="ec_user_queue_link"
+			cascade="none" lazy="false" inverse="false" fetch="select" order-by="username">
+			<key column="queuename" />
+			<many-to-many class="com.jiangyifen.ec.dao.User"
+				column="username" />
+		</set>
+		
+	</class>
+
+</hibernate-mapping>

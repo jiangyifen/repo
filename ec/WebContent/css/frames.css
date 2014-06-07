@@ -1,0 +1,24 @@
+iframe {
+  border: none;
+}
+
+iframe.page {
+  border-left: solid 1px #000000;
+  border-right: solid 1px #000000;
+}
+
+iframe.wizToc {
+  border-right: solid 1px #E6E6E6;
+}
+
+iframe.wizBtns {
+  border-top: solid 1px #E6E6E6;
+}
+
+iframe.wizTabs {
+  border-bottom: solid 1px #000000;
+}
+
+iframe.doc {
+  border: solid 1px #CCCCCC;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.DialTaskLog" table="ec_dial_task_log">
+        <id name="id">
+            <column name="id" not-null="true"/>
+            <generator class="identity"/>
+        </id>
+        <property name="dialTaskId" not-null="true"/>
+        <property name="dialTaskName" not-null="true" length="128"/>
+        <property name="customerCount" not-null="true"/>
+        <property name="dialTaskItemFinishedCount" not-null="true"/>
+        <property name="dialTaskItemTotalCount" not-null="true"/>
+        <property name="date" not-null="true"/>
+	</class>
+</hibernate-mapping>

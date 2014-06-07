@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.ShiftConfig" table="ec_shift_config">
+		<id name="id">
+			<column name="id" not-null="true"/>
+			<generator class="identity"/>
+		</id>
+		<property name="name" not-null="false"  length="32"/>
+        <property name="phoneNumber" not-null="true" length="32"/>
+        <property name="shiftGroup" not-null="false"  length="32"/>
+        <property name="sun" not-null="false"/> 
+        <property name="mon" not-null="false"/> 
+        <property name="tue" not-null="false"/> 
+        <property name="wed" not-null="false"/> 
+        <property name="thu" not-null="false"/> 
+        <property name="fri" not-null="false"/> 
+        <property name="sat" not-null="false"/> 
+	</class>
+</hibernate-mapping>

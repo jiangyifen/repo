@@ -1,0 +1,37 @@
+基本格式：
+{"command":"xxxx","key1"="value1","key2"="value2",...,"keyN"="valueN"}
+
+
+1，首次连接时，客户端向服务器端报告用户名和分机号
+client --> server
+{"command":"login","secret":"pa55w0rd","crmfenji":"8001","crmusername":"user1","crmversion":"1.5.2"}
+
+server --> client
+{"command":"loginsuccess","serverversion":"1.2.3"}
+
+登录失败直接关闭连接
+
+2，心跳
+
+客户端向服务器端发送心跳包：
+{"command":"heartbeat"}
+
+服务器端向客户端回复的心跳包：
+{"command":"heartbeat"}
+
+
+3，弹屏
+
+server --> client
+{"command":"pop","fenji":"8001","callernum":"13761488223","ly":"51088866","uniqueid":"12345678.9","keypress":["1","2","1","0"]}
+
+
+4，公文
+
+client --> server
+{"command":"newdoc","to":"user1","from":"user0"}
+{"command":"newdoc","to":"user2","from":"user0"}
+{"command":"newdoc","to":"user3","from":"user0"}
+
+server --> client
+{"command":"newdocnotify"}

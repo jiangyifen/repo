@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.SmUserInfo" table="ec_sm_user_info">
+        <id name="accountId">
+            <column name="accountId" not-null="true" length="32"/>
+        </id>
+        <property name="username" not-null="true" length="32"/>
+        <property name="password" not-null="true" length="32"/>
+        <property name="host" not-null="true" length="16"/>
+        <property name="port" not-null="true" length="8"/>
+        <property name="operator" not-null="true" length="16"/>
+	</class>
+</hibernate-mapping>

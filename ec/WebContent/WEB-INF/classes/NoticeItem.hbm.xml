@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.NoticeItem" table="ec_notice_item">
+		<id name="id">
+			<column name="id" not-null="true" />
+			<generator class="identity" />
+		</id>
+		<property name="username" not-null="true" length="32" />
+		<property name="read" not-null="true" />
+
+		<many-to-one name="notice" class="com.jiangyifen.ec.dao.Notice" 
+			lazy="false" not-null="true" outer-join="auto" access="property"
+			update="true" insert="true" column="noticeid" />
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.Role" table="ec_role">
+		<id name="rolename">
+			<column name="rolename" not-null="true" length="30" />
+		</id>
+		<property name="description" length="30" />
+
+		<set name="users" table="ec_user" lazy="false" cascade="none" inverse="true">
+			<key column="rolename"/>
+			<one-to-many class="com.jiangyifen.ec.dao.User" />
+		</set>
+
+		<set name="departments" access="property" table="ec_role_department_link"
+			cascade="save-update" lazy="false" inverse="false" fetch="select">
+			<key column="rolename" />
+			<many-to-many class="com.jiangyifen.ec.dao.Department"
+				column="departmentname" />
+		</set>
+		 
+        <set name="roleactions" access="property" table="ec_role_roleaction_link"
+            cascade="save-update" lazy="false" inverse="false" fetch="select">
+            <key column="rolename" />
+            <many-to-many class="com.jiangyifen.ec.dao.RoleAction"
+                column="roleactionname" />
+        </set>
+		 
+	</class>
+
+</hibernate-mapping>

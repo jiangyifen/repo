@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="hibernatetest">
+	<class name="com.jiangyifen.ec.dao.MeetMeRoom" table="meetme">
+	
+		<id name="confno">
+			<column name="confno" not-null="true" length="80" />
+		</id>
+		
+		<property name="pin" length="20" />
+		<property name="adminpin" length="20"/>
+		<property name="members" not-null="true"/>
+		
+	</class>
+</hibernate-mapping>

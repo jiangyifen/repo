@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="hibernatetest">
+	<class name="com.jiangyifen.ec.dao.Cdr" table="cdr">
+		<id name="uniqueid">
+			<column name="uniqueid" not-null="true" length="32" />
+		</id>
+		<property name="calldate" not-null="true"/>
+		<property name="clid" not-null="true" length="80"/>
+		<property name="src" not-null="true" length="80"/>
+		<property name="dst" not-null="true" length="80"/>
+		<property name="dcontext" not-null="true" length="80"/>
+		<property name="channel" not-null="true" length="80"/>
+		<property name="dstchannel" not-null="true" length="80"/>
+		<property name="lastapp" not-null="true" length="80"/>
+		<property name="lastdata" not-null="true" length="80"/>
+		<property name="duration" not-null="true"/>
+		<property name="billsec" not-null="true"/>
+		<property name="disposition" not-null="true" length="45"/>
+		<property name="amaflags" not-null="true"/>
+		<property name="accountcode" not-null="true" length="20"/>
+		<property name="userfield" not-null="true" length="255"/>
+		<property name="url" not-null="false" length="128"/>
+		<property name="fenji" not-null="false" length="80"/>
+		<property name="username" not-null="false" length="32"/>
+		<property name="name" not-null="false" length="32"/>
+		<property name="hid" not-null="false" length="32"/>
+		<property name="dpmt" not-null="false" length="32"/>
+		<property name="sync" not-null="false" length="1"/>
+		<property name="intention" not-null="false" />
+		
+	</class>
+</hibernate-mapping>

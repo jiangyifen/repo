@@ -1,0 +1,1068 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.custom.i18n.resources" value="lables" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<package name="ec" namespace="/" extends="jfreechart-default">
+
+		<interceptors>
+			<!--定义拦截器, name:拦截器名称 class:拦截器类路径 -->
+			<interceptor name="authorityInterceptor"
+				class="com.jiangyifen.ec.interceptors.AuthorityInterceptor"></interceptor>
+
+			<!-- 定义拦截器stack -->
+			<interceptor-stack name="myDefaultStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authorityInterceptor" />
+			</interceptor-stack>
+
+		</interceptors>
+
+		<global-results>
+			<result name="login">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="noauthority">/jsp/comm/noauthority.jsp
+			</result>
+		</global-results>
+
+		<!-- Login -->
+		<action name="login" class="com.jiangyifen.ec.actions.LoginAction">
+			<result name="success">/main.jsp</result>
+		</action>
+
+		<!-- User Authentication -->
+		<action name="userAuthentication"
+			class="com.jiangyifen.ec.actions.iface.UserAuthenticationAction">
+			<result name="success">/jsp/userAuthentication/result.jsp</result>
+		</action>
+
+		<!-- User Login -->
+		<action name="userLogin" class="com.jiangyifen.ec.actions.iface.UserLoginAction">
+			<result name="success">/jsp/comm/success.jsp
+			</result>
+			<result name="login">/jsp/comm/invalid.jsp
+			</result>
+			<result name="input">/jsp/comm/invalid.jsp
+			</result>
+		</action>
+
+		<!-- User Logout -->
+		<action name="logout" class="com.jiangyifen.ec.actions.LogoutAction" />
+
+		<!-- Change Password -->
+		<action name="changePassword" class="com.jiangyifen.ec.actions.ChangePasswordAction">
+			<result name="success">/changepassword.jsp</result>
+		</action>
+
+		<action name="changePasswordUpdate"
+			class="com.jiangyifen.ec.actions.ChangePasswordUpdateAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+		</action>
+
+		<!-- Dial Task -->
+		<action name="dialTaskAdd" class="com.jiangyifen.ec.actions.DialTaskAddAction">
+			<result name="success" type="chain">dialTasksGet</result>
+			<result name="input" type="chain">dialTasksGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="dialTaskUpdate" class="com.jiangyifen.ec.actions.DialTaskUpdateAction">
+			<result name="success" type="chain">dialTasksGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="dialTaskStatusChange"
+			class="com.jiangyifen.ec.actions.DialTaskStatusChangeAction">
+			<result name="success" type="chain">dialTasksGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="dialTaskAutoAssignChange"
+			class="com.jiangyifen.ec.actions.DialTaskAutoAssignChangeAction">
+			<result name="success" type="chain">dialTasksGet</result>
+			<!-- <interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<action name="dialTaskItemImport"
+			class="com.jiangyifen.ec.actions.DialTaskItemImportAction">
+			<result name="success" type="chain">dialTasksGet</result>
+			<result name="input">/jsp/comm/fileTooLarge.jsp
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="dialTaskGetOne" class="com.jiangyifen.ec.actions.DialTaskGetOneAction">
+			<result name="success">/jsp/dialtask/dialTaskUpdate.jsp
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="dialTasksGet" class="com.jiangyifen.ec.actions.DialTasksGetAction">
+			<result name="success">/jsp/dialtask/dialTaskManager.jsp
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="dialTaskDelete" class="com.jiangyifen.ec.actions.DialTaskDeleteAction">
+			<result name="success" type="chain">dialTasksGet</result>
+			<result name="input" type="chain">dialTasksGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="dialTaskItemDelete"
+			class="com.jiangyifen.ec.actions.DialTaskItemDeleteAction">
+			<result name="success" type="chain">dialTaskGetOne</result>
+			<result name="input" type="chain">dialTaskGetOne</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- Batch Sm Tasks Status -->
+		<action name="batchSmTaskStatusGet"
+			class="com.jiangyifen.ec.actions.BatchSmTaskStatusGetAction">
+			<result name="success">/jsp/batchsmtasks/batchSmTasksStatus.jsp
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- DialTaskLog -->
+		<action name="dialTaskLogsGet" class="com.jiangyifen.ec.actions.DialTaskLogsGetAction">
+			<result name="success">/jsp/dialtask/dialTaskLog.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- CRM DialTask Assign -->
+		<action name="crmDialTaskAssign"
+			class="com.jiangyifen.ec.actions.CrmDialTaskAssignAction">
+			<result name="success" type="chain">dialTasksGet</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<action name="crmDialTaskAssignSingleUser"
+			class="com.jiangyifen.ec.actions.CrmDialTaskAssignSingleUserAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<action name="crmDialTaskRetrieve"
+			class="com.jiangyifen.ec.actions.CrmDialTaskRetrieveAction">
+			<result name="success" type="chain">dialTasksGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- CRM DialTask SM Send -->
+		<action name="dialTaskSmSend" class="com.jiangyifen.ec.actions.DialTaskSmSendAction">
+			<result name="success">/jsp/dialtask/success.jsp</result>
+			<result name="page">/jsp/dialtask/dialTaskSmSend.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+
+		<!-- USER -->
+		<action name="userAdd" class="com.jiangyifen.ec.actions.UserAddAction">
+			<result name="success" type="chain">usersGet</result>
+			<result name="input" type="chain">usersGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="userUpdate" class="com.jiangyifen.ec.actions.UserUpdateAction">
+			<result name="success" type="chain">usersGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="userGetOne" class="com.jiangyifen.ec.actions.UserGetOneAction">
+			<result name="success">/userUpdate.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="usersGet" class="com.jiangyifen.ec.actions.UsersGetAction">
+			<result name="success">/userManager.jsp</result>
+
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="userDelete" class="com.jiangyifen.ec.actions.UserDeleteAction">
+			<result name="success" type="chain">usersGet</result>
+			<result name="input" type="chain">usersGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- Role -->
+		<action name="roleAdd" class="com.jiangyifen.ec.actions.RoleAddAction">
+			<result name="success" type="chain">rolesGet</result>
+			<result name="input" type="chain">rolesGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="roleUpdate" class="com.jiangyifen.ec.actions.RoleUpdateAction">
+			<result name="success" type="chain">rolesGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="roleGetOne" class="com.jiangyifen.ec.actions.RoleGetOneAction">
+			<result name="success">/roleUpdate.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="rolesGet" class="com.jiangyifen.ec.actions.RolesGetAction">
+			<result name="success">/roleManager.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="roleDelete" class="com.jiangyifen.ec.actions.RoleDeleteAction">
+			<result name="success" type="chain">rolesGet</result>
+			<result name="input" type="chain">rolesGet</result>
+			<result name="reference">/jsp/comm/reference_error.jsp
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- Department -->
+		<action name="departmentAdd" class="com.jiangyifen.ec.actions.DepartmentAddAction">
+			<result name="success" type="chain">departmentsGet
+			</result>
+			<result name="input" type="chain">departmentsGet
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="departmentUpdate" class="com.jiangyifen.ec.actions.DepartmentUpdateAction">
+			<result name="success" type="chain">departmentsGet
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="departmentGetOne" class="com.jiangyifen.ec.actions.DepartmentGetOneAction">
+			<result name="success">/departmentUpdate.jsp
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="departmentsGet" class="com.jiangyifen.ec.actions.DepartmentsGetAction">
+			<result name="success">/departmentManager.jsp
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="departmentDelete" class="com.jiangyifen.ec.actions.DepartmentDeleteAction">
+			<result name="success" type="chain">departmentsGet
+			</result>
+			<result name="input" type="chain">departmentsGet
+			</result>
+			<result name="reference">/jsp/comm/reference_error.jsp
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- SIP -->
+		<action name="sipAdd" class="com.jiangyifen.ec.actions.SipAddAction">
+			<result name="success" type="chain">sipsGet</result>
+			<result name="input" type="chain">sipsGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="sipUpdate" class="com.jiangyifen.ec.actions.SipUpdateAction">
+			<result name="success" type="chain">sipsGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="sipGetOne" class="com.jiangyifen.ec.actions.SipGetOneAction">
+			<result name="success">/sipUpdate.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="sipsGet" class="com.jiangyifen.ec.actions.SipsGetAction">
+			<result name="success">/sipManager.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="sipDelete" class="com.jiangyifen.ec.actions.SipDeleteAction">
+			<result name="success" type="chain">sipsGet</result>
+			<result name="input" type="chain">sipsGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- Queue -->
+		<action name="queueAdd" class="com.jiangyifen.ec.actions.QueueAddAction">
+			<result name="success" type="chain">queuesGet</result>
+			<result name="input" type="chain">queuesGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="queueUpdate" class="com.jiangyifen.ec.actions.QueueUpdateAction">
+			<result name="success" type="chain">queuesGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="queueGetOne" class="com.jiangyifen.ec.actions.QueueGetOneAction">
+			<result name="success">/queueUpdate.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="queuesGet" class="com.jiangyifen.ec.actions.QueuesGetAction">
+			<result name="success">/queueManager.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="queueDelete" class="com.jiangyifen.ec.actions.QueueDeleteAction">
+			<result name="success" type="chain">queuesGet</result>
+			<result name="input" type="chain">queuesGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- Queue Member -->
+		<action name="queueMemberAdd" class="com.jiangyifen.ec.actions.QueueMemberAddAction">
+			<result name="success" type="chain">queueGetOne</result>
+			<result name="input" type="chain">queueGetOne</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="queueMemberDelete"
+			class="com.jiangyifen.ec.actions.QueueMemberDeleteAction">
+			<result name="success" type="chain">queueGetOne</result>
+			<result name="input" type="chain">queueGetOne</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- SystemMonitor -->
+		<action name="systemMonitor" class="com.jiangyifen.ec.actions.SystemMonitorAction">
+			<result name="success">/monitor.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- GetUserTodayWorkloadAction -->
+		<action name="getUserTodayWorkload"
+			class="com.jiangyifen.ec.actions.iface.GetUserTodayWorkloadAction">
+			<result name="success">/jsp/iface/getUserTodayWorkload.jsp</result>
+			<result name="detail">/jsp/iface/getUserTodayWorkloadDetail.jsp
+			</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- GetUserAvgWorkloadAction -->
+		<action name="getUserAvgWorkload"
+			class="com.jiangyifen.ec.actions.iface.GetUserAvgWorkloadAction">
+			<result name="success">/jsp/iface/getUserAvgWorkload.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- GetDpmtTopWorkloadAction -->
+		<action name="getDpmtTopWorkload"
+			class="com.jiangyifen.ec.actions.iface.GetDpmtTopWorkloadAction">
+			<result name="success">/jsp/iface/getDpmtTopWorkload.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- delete!!! -->
+		<action name="getTodayWorkload" class="com.jiangyifen.ec.actions.Test">
+			<result name="success">/jsp/comm/success.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<action name="getTopOneWorkload" class="com.jiangyifen.ec.actions.Test">
+			<result name="success">/jsp/comm/success.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- GetQueueStatusAction -->
+		<action name="getQueueStatus"
+			class="com.jiangyifen.ec.actions.iface.GetQueueStatusAction">
+			<result name="paramsAndEntry">/jsp/status/queueParamsAndEntryIface.jsp</result>
+			<result name="iface">/jsp/status/queueStatusIface.jsp</result>
+			<result name="all">/jsp/status/allQueuesStatusMonitor.jsp</result>
+			<result name="success">/jsp/status/queueStatusMonitor.jsp</result>
+			<result name="input">/jsp/status/queueStatusMonitor.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- QueueUserLinkGetAction -->
+		<action name="queueUserLinkGet" class="com.jiangyifen.ec.actions.QueueUserLinkGetAction">
+			<result name="success">/jsp/queue_user_link/queue_user_link.jsp</result>
+			<result name="input">/jsp/comm/errorMsg.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- QueueUserLinkUpdateAction -->
+		<action name="queueUserLinkUpdate"
+			class="com.jiangyifen.ec.actions.QueueUserLinkUpdateAction">
+			<result name="success" type="chain">queueUserLinkGet</result>
+			<result name="input">/jsp/comm/errorMsg.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- GetQueuesAction -->
+		<action name="getQueues" class="com.jiangyifen.ec.actions.iface.GetQueuesAction">
+			<result name="iface">/jsp/status/getQueuesByUsername.jsp</result>
+			<result name="input">/jsp/comm/errorMsg.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- GetQueuesByUsernameAction -->
+		<action name="getQueuesByUsername"
+			class="com.jiangyifen.ec.actions.iface.GetQueuesByUsernameAction">
+			<result name="iface">/jsp/status/getQueuesByUsername.jsp</result>
+			<result name="input">/jsp/comm/errorMsg.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- GetSipStatusAction -->
+		<action name="getSipStatus"
+			class="com.jiangyifen.ec.actions.iface.GetSipStatusAction">
+			<result name="single">/jsp/status/singleSipStatus.jsp</result>
+			<result name="success">/jsp/status/sipStatusMonitor.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- SMS -->
+		<action name="getSm" class="com.jiangyifen.ec.actions.GetSmAction">
+			<result name="success">/jsp/sms/sms.jsp</result>
+			<result name="to many results">/jsp/comm/toManyResults.jsp
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="sms.csv"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- Notice -->
+		<action name="noticeGetDpmt" class="com.jiangyifen.ec.actions.NoticeGetDpmtAction">
+			<result name="success">/jsp/notice/noticeAdd.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="noticeGet" class="com.jiangyifen.ec.actions.NoticeGetAction">
+			<result name="success">/jsp/notice/notice.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="noticeDetailGet" class="com.jiangyifen.ec.actions.NoticeDetailGetAction">
+			<result name="success">/jsp/notice/noticeDetail.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="noticeUpdate" class="com.jiangyifen.ec.actions.NoticeUpdateAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="noticeAdd" class="com.jiangyifen.ec.actions.NoticeAddAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="noticeDelete" class="com.jiangyifen.ec.actions.NoticeDeleteAction">
+			<result name="success" type="chain">noticeGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- CDR -->
+		<action name="getCdr" class="com.jiangyifen.ec.actions.GetCdrAction">
+			<result name="success">/cdrs.jsp</result>
+			<result name="to many results">/jsp/comm/toManyResults.jsp
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="cdr.txt"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- Voicemail -->
+		<action name="getVoicemail" class="com.jiangyifen.ec.actions.GetVoicemailAction">
+			<result name="success">/voicemail.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- BlackList -->
+		<action name="blackListItemGet" class="com.jiangyifen.ec.actions.BlackListItemGetAction">
+			<result name="success">/jsp/blacklist/blacklist.jsp</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="blacklist.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="blackListItemDelete"
+			class="com.jiangyifen.ec.actions.BlackListItemDeleteAction">
+			<result name="success" type="chain">blackListItemGet</result>
+			<result name="input" type="chain">blackListItemGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="blackListItemAdd" class="com.jiangyifen.ec.actions.BlackListItemAddAction">
+			<result name="success" type="chain">blackListItemGet</result>
+			<result name="input" type="chain">blackListItemGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- JFreeChart -->
+
+		<action name="getChartWorkload"
+			class="com.jiangyifen.ec.actions.chart.GetChartWorkloadAction">
+			<result type="chart">
+				<param name="width">2200</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartWorkload.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartOutgoingWorkload"
+			class="com.jiangyifen.ec.actions.chart.GetChartOutgoingWorkloadAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartOutgoingWorkload.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartOutgoingWorkloadDistinctDst"
+			class="com.jiangyifen.ec.actions.chart.GetChartOutgoingWorkloadDistinctDstAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartOutgoingWorkloadDistinctDst.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartIncomingWorkload"
+			class="com.jiangyifen.ec.actions.chart.GetChartIncomingWorkloadAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartIncomingWorkload.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartQueueIncomingWorkload"
+			class="com.jiangyifen.ec.actions.chart.GetChartQueueIncomingWorkloadAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartQueueIncomingWorkload.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartWorkloadTimeline"
+			class="com.jiangyifen.ec.actions.chart.GetChartWorkloadTimelineAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartWorkloadTimeline.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartWorkloadAverageTimeline"
+			class="com.jiangyifen.ec.actions.chart.GetChartWorkloadAverageTimelineAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartWorkloadAverageTimeline.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartWeightedWorkload"
+			class="com.jiangyifen.ec.actions.chart.GetChartWeightedWorkloadAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartWeightedWorkload.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartMyCustomerTimeline"
+			class="com.jiangyifen.ec.actions.chart.GetChartMyCustomerTimelineAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartMyCustomerTimeline.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartWorkEfficiencyDistribution"
+			class="com.jiangyifen.ec.actions.chart.GetChartWorkEfficiencyDistributionAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartWorkEfficiencyDistribution.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartQueueWaitDistribution"
+			class="com.jiangyifen.ec.actions.chart.GetChartQueueWaitDistributionAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartQueueWaitDistributionAction.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartMyCustomer"
+			class="com.jiangyifen.ec.actions.chart.GetChartMyCustomerAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartMyCustomer.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartWait"
+			class="com.jiangyifen.ec.actions.chart.GetChartWaitAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartWait.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartAbandon"
+			class="com.jiangyifen.ec.actions.chart.GetChartAbandonAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartAbandon.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartQueueEntryTimes"
+			class="com.jiangyifen.ec.actions.chart.GetChartQueueEntryTimesAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartQueueEntryTimes.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartQueueWaitAndEntryTimes"
+			class="com.jiangyifen.ec.actions.chart.GetChartQueueWaitAndEntryTimesAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">500</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartQueueWaitAndEntryTimes.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartSMSendQuantity"
+			class="com.jiangyifen.ec.actions.chart.GetChartSMSendQuantityAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">500</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartSMSendQuantity.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartAgentAssessment"
+			class="com.jiangyifen.ec.actions.chart.GetChartAgentAssessmentAction">
+			<result name="success">/jsp/chart/chartAgentAssessment.jsp</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartAgentAssessment.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartAgentMinLoginTimeAndMaxLogoutTime"
+			class="com.jiangyifen.ec.actions.chart.GetChartAgentMinLoginTimeAndMaxLogoutTimeAction">
+			<result name="success">/jsp/chart/chartAgentMinLoginTimeAndMaxLogoutTime.jsp
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartAgentMinLoginTimeAndMaxLogoutTime.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartCustomerSatisfactionInvestigation"
+			class="com.jiangyifen.ec.actions.chart.GetChartCustomerSatisfactionInvestigationAction">
+			<result name="success">/jsp/chart/chartCustomerSatisfactionInvestigation.jsp
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartCustomerSatisfactionInvestigation.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartManDay"
+			class="com.jiangyifen.ec.actions.chart.GetChartManDayAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartManDay.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartAgentLoginLogoutDetail"
+			class="com.jiangyifen.ec.actions.chart.GetChartAgentLoginLogoutDetailAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartAgentLoginLogoutDetail.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartAgentPauseDetail"
+			class="com.jiangyifen.ec.actions.chart.GetChartAgentPauseDetailAction">
+			<result type="chart">
+				<param name="width">1500</param>
+				<param name="height">300</param>
+			</result>
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartAgentPauseDetail.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartQueueEnrtyAndAbandonDistinct"
+			class="com.jiangyifen.ec.actions.chart.GetChartQueueEnrtyAndAbandonDistinctAction">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartQueueEnrtyAndAbandonDistinct.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartQueueEnrtyAndAnswerIVRLog"
+			class="com.jiangyifen.ec.actions.chart.GetChartQueueEnrtyAndAnswerIVRLogAction">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartQueueEnrtyAndAnswer.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+		
+		<action name="getChartOverallReport"
+			class="com.jiangyifen.ec.customer.olay.report.GetChartOverallReportNewAction">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartOverallReport.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartOperationalData"
+			class="com.jiangyifen.ec.customer.olay.report.GetChartOperationalData">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartOperationalData.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChart30sDetail"
+			class="com.jiangyifen.ec.customer.olay.report.GetChart30sDetail">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="Chart30sDetail.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartCSRSatisfactionReport"
+			class="com.jiangyifen.ec.customer.olay.report.GetChartCSRSatisfactionReportAction">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartCSRSatisfactionReport.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartQueueAbandonDetail"
+			class="com.jiangyifen.ec.actions.chart.GetChartQueueAbandonDetailAction">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartQueueAbandonDetail.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartConcurrent"
+			class="com.jiangyifen.ec.actions.chart.GetChartConcurrentAction">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartConcurrent.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="getChartIVRQuit"
+			class="com.jiangyifen.ec.actions.chart.GetChartIVRQuitAction">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="ChartIVRQuit.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!--ganso -->
+		<action name="fenduanHour"
+			class="com.jiangyifen.ec.customer.ganso.report.FenduanHour">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="FenduanHour.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="fenduanDay"
+			class="com.jiangyifen.ec.customer.ganso.report.FenduanDay">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="FenduanDay.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="fenduanMonth"
+			class="com.jiangyifen.ec.customer.ganso.report.FenduanMonth">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="FenduanMonth.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="faqCount" class="com.jiangyifen.ec.customer.ganso.report.FAQCount">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="FAQCount.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="faqDetail"
+			class="com.jiangyifen.ec.customer.ganso.report.FAQDetail">
+			<result name="excel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="FAQDetail.xls"</param>
+				<param name="inputName">excelFile</param>
+			</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- CRM Extem Update For YanRui -->
+		<action name="crmExtenUpdate"
+			class="com.jiangyifen.ec.actions.iface.CrmExtenUpdateAction">
+			<result name="success">/blank.jsp</result>
+			<!--<interceptor-ref name="myDefaultStack" /> -->
+		</action>
+
+		<!-- MyCustomerLogAdd -->
+		<action name="myCustomerLogAdd"
+			class="com.jiangyifen.ec.actions.iface.MyCustomerLogAddAction">
+			<result name="success">/blank.jsp</result>
+			<result name="login">/jsp/comm/invalid.jsp
+			</result>
+		</action>
+
+		<!-- dialAction -->
+		<action name="dialAction" class="com.jiangyifen.ec.actions.ami.DialAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+		</action>
+
+		<!-- hangup -->
+		<action name="hangup" class="com.jiangyifen.ec.actions.ami.HangUpAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+		</action>
+
+		<!-- queueMemberPause -->
+		<action name="queueMemberPause"
+			class="com.jiangyifen.ec.actions.ami.QueueMemberPauseAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+		</action>
+
+		<!-- ChannelRedirect -->
+		<action name="channelRedirect"
+			class="com.jiangyifen.ec.actions.ami.ChannelRedirectAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+		</action>
+
+		<!-- MusicOnHold -->
+		<action name="musicOnHold" class="com.jiangyifen.ec.actions.ami.MusicOnHoldAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+		</action>
+
+		<!-- MeetMeStart -->
+		<action name="meetMeStart" class="com.jiangyifen.ec.actions.ami.MeetMeStartAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+		</action>
+
+		<!-- MeetMeInvite -->
+		<action name="meetMeInvite" class="com.jiangyifen.ec.actions.ami.MeetMeInviteAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+		</action>
+
+		<!-- MeetMeStatus -->
+		<action name="meetMeStatus" class="com.jiangyifen.ec.actions.ami.MeetMeStatusAction">
+			<result name="success">/jsp/status/meetMeStatus.jsp</result>
+		</action>
+
+		<!-- Sm Send -->
+		<action name="smSend" class="com.jiangyifen.ec.actions.SmSendAction">
+			<result name="success">/jsp/comm/success.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- Shift config -->
+		<action name="shiftConfigGet" class="com.jiangyifen.ec.actions.ShiftConfigGetAction">
+			<result name="success">/jsp/shiftconfig/shiftConfig.jsp</result>
+			<result name="input">/jsp/shiftconfig/shiftConfig.jsp</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="shiftConfigAdd" class="com.jiangyifen.ec.actions.ShiftConfigAddAction">
+			<result name="success" type="chain">shiftConfigGet</result>
+			<result name="input" type="chain">shiftConfigGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="shiftConfigUpdate"
+			class="com.jiangyifen.ec.actions.ShiftConfigUpdateAction">
+			<result name="success" type="chain">shiftConfigGet</result>
+			<result name="input" type="chain">shiftConfigGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<action name="shiftConfigDelete"
+			class="com.jiangyifen.ec.actions.ShiftConfigDeleteAction">
+			<result name="success" type="chain">shiftConfigGet</result>
+			<result name="input" type="chain">shiftConfigGet</result>
+			<interceptor-ref name="myDefaultStack" />
+		</action>
+
+		<!-- test -->
+		<action name="test" class="com.jiangyifen.ec.actions.TestAction">
+			<result name="success" type="chain">testJSON</result>
+		</action>
+
+		<!-- testJSON -->
+		<action name="testJSON" class="com.jiangyifen.ec.actions.TestJSONAction">
+			<result name="success">/jsp/comm/json.jsp</result>
+		</action>
+
+
+	</package>
+
+	<!-- Add packages here -->
+
+</struts>

@@ -1,0 +1,189 @@
+*Install CentOS 5.7
+
+*Install packages
+*Init PostgreSQL
+*Config httpd
+*Config PostgreSQL
+
+yum install ntp.x86_64 -y
+ntpdate 0.pool.ntp.org
+/sbin/hwclock --systohc
+yum install yum-fastestmirror.noarch -y
+yum upgrade openssl -y
+yum install bison.x86_64 bison-devel.x86_64 ncurses.x86_64 ncurses-devel.x86_64 zlib.x86_64 zlib-devel.x86_64 openssl.x86_64 openssl-devel.x86_64 gnutls.x86_64 gnutls-devel.x86_64 gcc.x86_64 gcc-c++.x86_64 -y
+
+yum remove postgresql-libs -y
+yum install postgresql.x86_64 postgresql-contrib.x86_64 postgresql-devel.x86_64 postgresql-docs.x86_64 postgresql-libs.x86_64 postgresql-python.x86_64 postgresql-server.x86_64 -y
+yum install apr-util.x86_64 httpd.x86_64 httpd-manual.x86_64 mod_perl.x86_64 mod_python.x86_64 mod_ssl.x86_64 php.x86_64 subversion.x86_64 system-config-httpd webalizer.x86_64 -y
+
+chkconfig --level 3 httpd on
+chkconfig --level 3 postgresql on
+
+*
+vi /etc/sysconfig/clock
+    ZONE="Asia/Shanghai"
+    UTC=false   （主要是这个选项，设置硬件时钟不是跟utc一致）
+    ARC=false
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+
+su postgres
+cd
+initdb -D data -W
+createdb asterisk
+createuser asterisk
+createlang plpgsql asterisk 
+psql asterisk
+ALTER USER asterisk with password 'asterisk';
+\i path/realtime_pgsql.sql
+
+
+
+
+////////////////////////////////Installing Asterisk from source code////////////////////////////////////////////////////////////////////////////////
+*Install DAHDI hardware
+lspci
+find line like this:
+06:0f.0 Communication controller: Tiger Jet Network Inc. Tiger3XX Modem/ISDN interface
+
+*Build and install libpri
+make install
+
+*Install DAHDI-complete
+cp opvxa1200.c dahdi-linux-complete-2.2.1+2.2.1/linux/drivers/dahdi/
+vi dahdi-linux-complete-2.2.1+2.2.1/linux/drivers/dahdi/Kbuild
+    find line:
+    obj-$(DAHDI_BUILD_ALL)$(CONFIG_DAHDI_WCTDM) += wctdm.o
+    add after that line:
+    obj-$(DAHDI_BUILD_ALL)$(CONFIG_DAHDI_WCTDM) += opvxa1200.o
+
+
+centos 5.6版本需要修改一下：
+/usr/src/dahdi-linux-complete-2.2.1+2.2.1/linux/include/dahdi/kernel.h   第86行
+
+ #endif
+
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,26)
+-#define dev_name(dev) (dev)->bus_id
++#if RHEL_RELEASE_CODE < RHEL_RELEASE_VERSION(5,6)
++#define dev_name(dev) (dev)->bus_id
++#endif
+ #define dev_set_name(dev, format, ...) \
+        snprintf((dev)->bus_id, BUS_ID_SIZE, format, ## __VA_ARGS__);
+ #endif
+ 
+ 
+make all
+make install
+make config
+
+
+
+*modify asterisk source code:  apps/app_queue.c, play beep after agi in queue, before bridge two channels
+
+                transfer_ds = setup_transfer_datastore(qe, member, callstart, callcompletedinsl);
+
+                /*
+                add by jiangyifen
+                */
+                play_file(peer,"beep");
+
+
+                bridge = ast_bridge_call(qe->chan,peer, &bridge_config);
+                
+                
+*Build and install asterisk:
+./configure --with-postgres --with-dahdi
+make
+make install
+make samples
+make progdocs
+make config
+make install-logrotate
+
+*Generate DAHDI config
+dahdi_genconf
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+*Configure Asterisk
+cdr_manager.conf
+cdr_pgsql.conf
+extconfig.conf
+extensions.conf
+features.conf
+http.conf
+manager.conf
+queues.conf
+res_pgsql.conf
+sip.conf
+voicemail.conf
+
+sound files
+
+*Install lame lame-398-2.tar.gz(optional)
+./configure
+make
+make install
+
+
+/****转录音
+Makefile
+
+LISTWAV = $(shell find -name '*.wav' -size +50k)
+DIRWAV = $(LISTWAV:.wav=.mp3)
+mp3: $(DIRWAV)
+%.mp3: %.wav
+        nice lame --quiet -h --preset phone $? $@ 
+        rm -f $? 
+        ln -s $@ $? 
+****/
+
+
+*Install Sun JDK (jdk-1_5_0_22-linux-i586-rpm.bin)
+chmod +x jdk-1_5_0_22-linux-i586-rpm.bin
+./jdk-1_5_0_22-linux-i586-rpm.bin
+vi /etc/profile
+
+alias vi=vim
+export JAVA_HOME=/usr/java/latest
+export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar
+export PATH=$PATH:$JAVA_HOME/bin
+
+*Install Apache Tomcat 
+apache-tomcat-6.0.20.zip
+chmod +x tomcat/bin/*.sh
+
+edit /etc/rc.local
+source /etc/profile
+/opt/apache-tomcat-6.0.20/bin/startup.sh
+
+*Install EC
+cp ec.war tomcat/webapp
+
+*Configure
+modify tomcat/webapp/ec/WEB-INF/applicationContext.xml, <property name="jdbcUrl" value="jdbc:postgresql://XXX.XXX.XXX.XXX/asterisk" />
+modify tomcat/webapps/ec/WEB-INF/classes/Hibernate.cfg.xml, <property name="connection.url">jdbc:postgresql://XXX.XXX.XXX.XXX/asterisk</property>
+modify webapps/ec/WEB-INF/classes/config.properties
+
+*Init data
+psql asterisk
+\i path/ec_init_data.sql
+
+*edit crontab, add:
+0 21 * * * root ntpdate 0.pool.ntp.org
+1 21 * * * root /sbin/hwclock --systohc
+0 22 * * * root rm /dev/shm/* -f
+0 22 * * * root service postgresql restart
+05 22 * * * root service asterisk restart
+06 22 * * * root sudo -u postgres vacuumdb -a -f
+10 5 * * * root /opt/apache-tomcat-6.0.20/bin/shutdown.sh
+11 5 * * * root killall java
+12 5 * * * root /opt/apache-tomcat-6.0.20/bin/startup.sh
+
+* IVR sound file ftp
+ln -s /home/bruce/ivr/ /var/lib/asterisk/sounds/customer
+
+
+
+
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="hibernatetest">
+	<class name="com.jiangyifen.ec.dao.Voicemail" table="ec_voicemail">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="origmailbox" not-null="true"/>
+		<property name="callerid" not-null="true"/>
+		<property name="origdate" not-null="true"/>
+		<property name="duration" not-null="false"/>
+		<property name="filename" not-null="true"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="hibernatetest">
+	<class name="com.jiangyifen.ec.dao.CustomerPhoneNum" table="ec_customer_phone_number">
+		<id name="customerPhoneNumber">
+			<column name="customer_phone_number" not-null="true" length="30" />
+		</id>
+		<property name="customerManagerLoginName" column="customer_manager_login_name" length="50" />
+		
+		<!-- 
+		<many-to-one name="customerManager" class="com.jiangyifen.ec.dao.CustomerManager" lazy="false" not-null="true" 
+			outer-join="auto"  access="property" update="true" insert="true" column="customer_manager_login_name"  />
+	    -->
+	</class>
+</hibernate-mapping>

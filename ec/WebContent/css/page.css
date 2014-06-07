@@ -1,0 +1,553 @@
+body {
+  margin-left: 6px;
+  background-color: rgb(255,255,255);
+  color: rgb(0,0,0);
+  margin: 9px;
+}
+
+body, p, td, div, input.text, select {
+  font-family: Verdana, sans-serif;
+  font-size: 11px;
+}
+
+input.text, .txtVal {
+  padding-right: 3px;
+  padding-left: 3px;
+  border: solid 1px #999999;
+}
+
+.txtVal {
+  border: solid 1px #FFFFFF;
+}
+
+td {
+  padding-top: 2px;
+  padding-right: 3px;
+  padding-bottom: 2px;
+  padding-left: 3px;
+}
+
+A {
+  text-decoration: none;
+  color: #0066FF;
+}
+
+A:visited {
+  color: #0066FF;
+}
+
+A:hover {
+  color: #FF6600;
+}
+
+.sctHdr {
+  margin-bottom: 6px;
+}
+
+.sctHdr table {
+  width: 100%;
+  border: solid 1px #CCCCCC;
+  background-color: #E6E6E6;
+  background: url(../imx/tile-0004.png);
+}
+
+.sctHdr td {
+  padding: 2px;
+  font-weight: bold;
+}
+
+.sctHdr .subHdr {
+  font-weight: normal;
+}
+
+p.sctHdr {
+  margin-bottom: 12px;
+}
+
+.lst {
+  margin-bottom: 12px;
+}
+
+.lst table {
+  width: 100%;
+  border: solid 1px #CCCCCC;
+}
+
+.lst tr.hdr, .lst tr.hdr td {
+  background-color: #E6E6E6;
+  background: url(../imx/tile-0003.png);
+  color: #666666;
+  font-weight: bold;
+}
+
+.lst tr.hdr td {
+  text-align: center;
+  border-left: solid 1px #CCCCCC;
+}
+
+.lst tr.hdr td.left {
+  border-left: none;
+}
+
+.lst tr.hdr td.dn {
+  text-align: left;
+}
+
+.lst tr.vms td.dn {
+  color: #666666;
+}
+
+.lst tr.vms td.ram,
+.lst tr.vms td.cpu,
+.lst tr.vms td.up {
+  text-align: right;
+}
+
+.lst tr.vms td.vcpu {
+  text-align: center;
+}
+
+.lst tr.vms td {
+  border-left: solid 1px #E6E6E6;
+  border-top: solid 1px #E6E6E6;
+  cursor: default;
+  background-color: #FFFFFF;
+}
+
+.lst tr.vms td.rc, .lst tr.vms td.rcHvr, .lst tr.vms td.cpuBar {
+  border-left: none;
+}
+.lst tr.vms td.user {
+  border-left: none;text-align: center;
+  background-color: #FFFFFF;
+
+}
+
+.lst tr.cdr td.dn {
+  color: #666666;
+}
+
+.lst tr.cdr td.red {
+  background-color: #FE7B7B;
+}
+.lst tr.cdr td.green {
+  background-color: #7EF172;
+}
+.lst tr.cdr td.orange {
+  background-color: #FFCB8F;
+}
+
+.lst tr.cdr td.ram,
+.lst tr.cdr td.cpu,
+.lst tr.cdr td.up {
+  text-align: right;
+}
+
+.lst tr.cdr td.vcpu {
+  text-align: center;
+}
+
+.lst tr.cdr td {
+  border-left: solid 1px #E6E6E6;
+  border-top: solid 1px #E6E6E6;
+  cursor: default;
+}
+
+.lst tr.cdr td.rc, .lst tr.cdr td.rcHvr, .lst tr.cdr td.cpuBar {
+  border-left: none;
+}
+.lst tr.cdr {
+  border-left: none;text-align: center;
+  background-color: #FFFFFF;
+}
+.lst tr.cdr{
+	    event:expression(
+	    onmouseover = function(){   
+                                    if(this.s == -1) this.style.backgroundColor='#f5f5f5';
+                                },
+        onmouseout = function(){
+                                    if(this.s == -1) this.style.backgroundColor='#FFFFFF';
+                               },
+        onclick = function(){
+                                    var table = document.getElementById("list");
+                                    
+                                    for(var i=1;i<table.rows.length;i++){
+                                        table.rows[i].style.backgroundColor = '#FFFFFF';
+                                        table.rows[i].s = -1;
+                                    };
+                                    this.s = 1;
+                                    this.style.backgroundColor='#f5f5f5';
+                                    setUrl(this.title);
+                            }
+    );
+}
+
+.paren {
+  color: #999999;
+}
+
+#sxUp {
+  color: #999999;
+}
+
+.lst tr.hdr td#processors {
+  border-left: none;
+  text-align: left;
+}
+
+.lst tr.hdr td#memory {
+  text-align: left;
+}
+
+#sxStatPeriod, #sxStatPeriodA, #sxStatPeriodB {
+  color: #999999;
+}
+
+#sxStatPeriodA, #sxStatPeriodB {
+  padding-right: 9px;
+}
+
+table.statSummary {
+  border: none;
+}
+
+tr.statSummary td {
+  border-top: solid 1px #E6E6E6;
+  border-left: solid 1px #E6E6E6;
+  padding-top: 3px;
+  padding-right: 6px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+}
+
+tr.statSummary td.left {
+  border-left: none;
+}
+
+table.statSummary td.lbl, table.statSummary td.val, table.statSummary td.bar {
+  padding-top: 2px;
+  padding-right: 3px;
+  padding-bottom: 3px;
+  padding-left: 2px;
+  border: none;
+}
+
+td.val div {
+  cursor: default;
+}
+
+table.statSummary td.lbl {
+  padding-left: 6px;
+}
+
+table.statSummary td.bar {
+  padding-right: 6px;
+}
+
+table.statSummary tr.total td {
+  border-top: solid 1px #E6E6E6;
+  padding-top: 4px;
+}
+
+td.btnCol, td.btnColRgt, td.btnColLft {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 0px;
+  padding-left: 6px;
+}
+
+table.cntnr td.btnCol, table.cntnr td.btnColRgt, table.cntnr td.btnColLft {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-right: 0px;
+  padding-left: 6px;
+}
+
+table.cntnr td.btnNxt {
+  padding-left: 0px;
+  padding-right: 6px;
+}
+
+table.cntnr td.btnBck {
+  padding-right: 0px;
+}
+
+td.btnColRgt {
+  padding-right: 3px;
+}
+
+table.cntnr td.btnColRgt {
+  padding-right: 6px;
+}
+
+td.btnColLft {
+  padding-left: 0px;
+}
+
+div.btn table {
+  background: url(../imx/tile-0003.png);
+  border: solid 1px #999999;
+}
+
+div.btn td.lbl {
+  color: #666666;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-right: 8px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+}
+
+div.btn td.lblSmall {
+  color: #666666;
+  font-weight: bold;
+  font-size: 10px;
+  padding-top: 2px;
+  padding-right: 4px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+}
+
+div.btn td.ilbl {
+  color: #666666;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-right: 8px;
+  padding-bottom: 3px;
+  padding-left: 4px;
+}
+
+div.btn td.icon {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 8px;
+}
+
+div.btn td.ilblLft {
+  color: #666666;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-right: 4px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+}
+
+div.btn td.iconRgt {
+  padding-top: 0px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+div.btn A, div.btn A:hover, div.btn A:visited {
+  color: #666666;
+}
+
+div.btn {
+  cursor: pointer;
+}
+
+#addVmBtn {
+  text-align: right;
+}
+
+.vmGuestState {
+  color: #999999;
+}
+
+tr#noVms td, tr#noCon td, tr#noEvt td, #sxNoStats td {
+  font-weight: bold;
+  color: #999999;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+tr#noVms td, #sxNoStats td {
+  text-align: center;
+}
+
+tr#noCon td {
+  padding-top: 12px;
+}
+
+div.cfg {
+  background: none;
+  padding: 0px;
+  border: none;
+}
+
+.cfg table {
+  width: 100%;
+}
+
+.cfg tr.hdr, .cfg tr.hdr td {
+  background-color: #E6E6E6;
+  background: url(../imx/tile-0003.png);
+  color: #666666;
+  font-weight: bold;
+}
+
+.cfg tr.hdr td {
+  padding: 2px;
+  border: solid 1px #CCCCCC;
+}
+
+.cfg tr.hdr td.left {
+  border-right: none;
+}
+
+.cfg tr.hdr td.right {
+  border-left: none;
+  text-align: right;
+  color: #999999;
+}
+
+.cfg td.lcol, .cfg td.vr, .cfg td.rcol {
+  padding: 0px;
+}
+
+.vr, .hr {
+  background-color: #E6E6E6;
+}
+
+.cfg td.lcol {
+  padding-right: 9px;
+}
+
+.cfg td.rcol {
+  padding-left: 9px;
+}
+
+.cfg tr.cat td {
+  padding-top: 12px;
+  border-bottom: solid 1px #E6E6E6;
+  color: #666666;
+  font-weight: bold;
+}
+
+.cfg tr.catSlctd td {
+  padding-top: 12px;
+  border-bottom: solid 1px #E6E6E6;
+  color: #000000;
+  font-weight: bold;
+}
+
+.cfg td.key, .cfg td.val, .cfg td.slctKey, .cfg td.slctVal {
+  padding-top: 6px;
+  padding-bottom: 3px;
+}
+
+.cfg td.slctKey, .cfg td.slctVal {
+  padding-bottom: 0px;
+}
+
+.cfg td.key, .cfg td.slctKey {
+  color: #666666;
+}
+
+div#vmCtrlBar, .menu {
+  border: solid 1px #000000;
+  background-color: #FFFFFF;
+}
+
+#vmCtrlBar table, .menu table {
+  border: solid 1px #CCCCCC;
+  margin: 0px;
+}
+
+.rc, .rcHvr, .rcSlct, .rcDsbl,
+.ctx, .ctxHvr, .ctxSlct, .ctxDsbl,
+.es, .esHvr, .esSlct, .esDsbl {
+  padding: 0px;
+}
+
+.rc div, .rcDsbl div,
+.ctx div, .ctxDsbl div,
+.es div, .esDsbl div {
+  border: solid 1px #FFFFFF;
+}
+
+.rc div, .rcHvr div, .rcSlct div, .rcDsbl div,
+.ctx div, .ctxHvr div, .ctxSlct div, .ctxDsbl div,
+.es div, .esHvr div, .esSlct div, .esDsbl div {
+  padding: 3px;
+  padding-bottom: 4px;
+}
+
+.rc div, .rcHvr div, .rcSlct div,
+.ctx div, .ctxHvr div, .ctxSlct div,
+.es div, .esHvr div, .esSlct div {
+  cursor: pointer;
+}
+
+.rcHvr div,
+.ctxHvr div,
+.esHvr div{
+  border: solid 1px #999999;
+  background-color: #E6E6E6;
+  background: url(../imx/tile-0003.png);
+}
+
+.ctxSlct div,
+.esSlct div {
+  border: solid 1px #999999;
+  background-color: #E6E6E6;
+  background: url(../imx/tile-0004.png);
+}
+
+.ctx div, .ctxHvr div, .ctxSlct div, .ctxDsbl div,
+.es div, .esHvr div, .esSlct div, .esDsbl div {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+div.label div.c {
+  color: #999999;
+}
+
+table.cntnr td {
+  padding: 0px;
+}
+
+p.lmod {
+  color: #666666;
+  margin-bottom: 9px;
+}
+
+.lmod A, .note A {
+  color: #6699CC;
+}
+
+.lmod A:hover, .note A:hover {
+  color: #FF6600;
+}
+
+.lmod A:visited, .note A:visited {
+  color: #6699CC;
+}
+
+.pageTop {
+  border-top: solid 1px #E6E6E6;
+}
+
+.note, .note input {
+  color: #666666;
+}
+
+.note .note {
+  color: #999999;
+}
+
+a.radioLabel, a.radioLabel:hover, a.radioLabel:visited {
+  color: black;
+}
+
+a.slctd, a.slctd:hover, a.slctd:visited {
+  font-weight: bold;
+  cursor: default;
+}
+
+a.dsbld, a.dsbld:hover, a.dsbld:visited {
+  color: #666666;
+}

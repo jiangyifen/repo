@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.DialTaskItem" table="ec_dial_task_item">
+		<id name="id">
+			<column name="id" not-null="true"/>
+			<generator class="identity"/>
+		</id>
+        <property name="phoneNumber" not-null="true" length="32"/>
+        <property name="taskid" not-null="true"/>
+        <property name="status" not-null="true" length="8"/>
+        <property name="calldate" not-null="false"/>
+        
+        <property name="phoneNumber2" not-null="false"  length="32"/>
+        <property name="name" not-null="false"  length="32"/>
+        <property name="sex" not-null="false"  length="8"/>
+        <property name="province" not-null="false"  length="32"/>
+        <property name="city" not-null="false"  length="32"/>
+        <property name="address" not-null="false"  length="255"/>
+        <property name="company" not-null="false"  length="255"/>
+        <property name="info" not-null="false"  length="2000"/>
+        <property name="result" not-null="false"  length="32"/>
+        <property name="remark" not-null="false"  length="512"/>
+        <property name="hasSmReply" not-null="false"/>
+        <property name="timestamp" not-null="false"/>
+        <property name="owner" not-null="false"  length="32"/>
+ 
+	</class>
+</hibernate-mapping>

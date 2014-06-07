@@ -1,0 +1,1 @@
+﻿<%@ page language="java" contentType="text/html; charset=gb2312" pageEncoding="utf-8"%><%@ taglib prefix="s" uri="/struts-tags"%>topCount:<s:property value="topCount"/>;topBillsec:<s:property value="topBillsec"/>;topCustomerCount:<s:property value="topCustomerCount"/>;topWorkload:<s:property value="topWorkload"/>

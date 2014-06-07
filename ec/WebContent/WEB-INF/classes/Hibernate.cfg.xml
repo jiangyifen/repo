@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+
+		<property name="connection.url">jdbc:postgresql://10.0.1.37/asterisk</property>
+
+		<property name="connection.username">asterisk</property>
+
+		<property name="connection.password">asterisk</property>
+
+		<property name="c3p0.min_size">5</property>
+
+		<property name="c3p0.max_size">30</property>
+
+		<property name="c3p0.timeout">20</property>
+
+		<property name="c3p0.idle_test_period">30</property>
+
+		<property name="c3p0.max_statements">50</property>
+
+		<property name="show_sql">false</property>
+
+		<property name="format_sql">false</property>
+
+
+		<!-- 对象与数据库表映像文件 -->
+
+		<mapping resource="Cdr.hbm.xml" />
+		<mapping resource="Sip.hbm.xml" />
+		<mapping resource="Queue.hbm.xml" />
+		<mapping resource="QueueMember.hbm.xml" />
+		<mapping resource="User.hbm.xml" />
+		<mapping resource="Role.hbm.xml" />
+		<mapping resource="Department.hbm.xml" />
+		<mapping resource="RoleAction.hbm.xml" />
+		<mapping resource="CustomerManager.hbm.xml" />
+		<mapping resource="CustomerPhoneNum.hbm.xml" />
+		<mapping resource="UserLoginRecord.hbm.xml" />
+		<mapping resource="DialTask.hbm.xml" />
+		<mapping resource="DialTaskItem.hbm.xml" />
+		<mapping resource="DialTaskLog.hbm.xml" />
+		<mapping resource="MyCustomerLog.hbm.xml" />
+		<mapping resource="QueueEntryEventLog.hbm.xml" />
+		<mapping resource="QueueMemberPauseLog.hbm.xml" />
+		<mapping resource="CustomerSatisfactionInvestigationLog.hbm.xml" />
+		<mapping resource="BlackListItem.hbm.xml" />
+		<mapping resource="MeetMeRoom.hbm.xml" />
+		<mapping resource="SmUserInfo.hbm.xml" />
+		<mapping resource="SmTask.hbm.xml" />
+		<mapping resource="OutsideLine.hbm.xml" />
+		<mapping resource="Notice.hbm.xml" />
+		<mapping resource="NoticeItem.hbm.xml" />
+		<mapping resource="Config.hbm.xml" />
+		<mapping resource="ShiftConfig.hbm.xml" />
+		<mapping resource="IVRLog.hbm.xml" />
+		<mapping resource="LinkLog.hbm.xml" />
+
+	</session-factory>
+
+</hibernate-configuration>
