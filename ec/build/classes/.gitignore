@@ -1,3 +1,5 @@
+/com/
+/org/
 /HibernateTest.class
 /MyEventListener.class
 /MyManager.class
@@ -5,4 +7,3 @@
 /ProjectInit.class
 /T.class
 /Test.class
-/com/
