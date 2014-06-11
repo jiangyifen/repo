@@ -190,7 +190,7 @@ public class ReportOperationalData extends AbstractReport {
 		try {
 			String sql = "select count(*) from ec_ivr_log where date>='" + day
 					+ " 00:00:00' and date<='" + day
-					+ " 23:59:59' and (node='1' or node='faq');";
+					+ " 23:59:59' and node='1_jfdh';";
 			logger.info(sql);
 			statement = connection.prepareStatement(sql);
 			rs = statement.executeQuery();
