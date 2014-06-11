@@ -20,9 +20,9 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 	private static Logger logger = LoggerFactory
 			.getLogger(OlayWSIVRPointQuery.class);
 
-	private static MyOlayIVRSrv srv = new MyOlayIVRSrv();
+	private static MyOlayIVRSrv srv = null;
 
-	private static MyOlayIVRSrvPortType pt = srv.getMyOlayIVRSrvHttpPort();
+	private static MyOlayIVRSrvPortType pt = null;
 
 	private void initClient() {
 		try {
@@ -39,6 +39,10 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 			throws AgiException {
 
 		try {
+			
+			if(srv==null || pt==null){
+				initClient();
+			}
 
 			String userId = request.getParameter("userId");
 
