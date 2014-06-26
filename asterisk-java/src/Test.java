@@ -12,7 +12,7 @@ public class Test extends Thread {
 
 	public Test() throws IOException {
 		ManagerConnectionFactory factory = new ManagerConnectionFactory(
-				"192.168.35.11", "manager", "123456");
+				"10.0.1.22", "manager", "123456");
 
 		this.managerConnection = factory.createManagerConnection();
 		managerConnection.addEventListener(new MyListener());
@@ -24,12 +24,6 @@ public class Test extends Thread {
 			managerConnection.login();
 			while (true) {
 				sleep(1000);
-				System.out.println();
-				System.out.println();
-				ManagerAction action = new ParkedCallsAction();
-				managerConnection.sendAction(action, null);
-//				ManagerResponse r =  managerConnection.sendAction(action);
-//				System.out.println("JYF:  "+r);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,8 +32,7 @@ public class Test extends Thread {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Test helloManager;
-		helloManager = new Test();
+		Test helloManager = new Test();
 		helloManager.start();
 
 	}
