@@ -287,6 +287,7 @@ public class MyManager extends Thread {
 		try {
 			managerConnection = factory.createManagerConnection();
 			managerConnection.addEventListener(new MyEventListener());
+			managerConnection.addEventListener(new HoldListener());
 			managerConnection.login();
 			Thread.sleep(1000);
 		} catch (Exception e) {
