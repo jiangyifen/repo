@@ -84,6 +84,7 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 			setVariable("exitCode", exitCode.toString());
 			setVariable("totalPoint", totalPoint);
 			setVariable("availablePoint", availablePoint);
+			setVariable("accountCategory",accountCategory);
 
 		} catch (RemoteException e) {
 			initClient();
