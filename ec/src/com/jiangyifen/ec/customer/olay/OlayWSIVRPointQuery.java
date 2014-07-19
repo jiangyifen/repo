@@ -39,8 +39,8 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 			throws AgiException {
 
 		try {
-			
-			if(srv==null || pt==null){
+
+			if (srv == null || pt == null) {
 				initClient();
 			}
 
@@ -58,6 +58,8 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 			String totalPoint = "0";
 			String memberID = "";
 			String name = "";
+			String pointC = "";
+			String expirationPoint = "";
 
 			if (exitCode == 0) {
 				city = rt.getResult().getValue().getCity().getValue();
@@ -69,6 +71,9 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 						.toString();
 				memberID = rt.getResult().getValue().getMemberID().getValue();
 				name = rt.getResult().getValue().getName().getValue();
+				pointC = rt.getResult().getValue().getPointC().toString();
+				expirationPoint = rt.getResult().getValue()
+						.getExpirationPoint().toString();
 			}
 
 			logger.info("JJJ: exitCode=" + exitCode);
@@ -84,7 +89,9 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 			setVariable("exitCode", exitCode.toString());
 			setVariable("totalPoint", totalPoint);
 			setVariable("availablePoint", availablePoint);
-			setVariable("accountCategory",accountCategory);
+			setVariable("accountCategory", accountCategory);
+			setVariable("pointC",pointC);
+			setVariable("expirationPoint",expirationPoint);
 
 		} catch (RemoteException e) {
 			initClient();
@@ -96,7 +103,7 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 		try {
 
 			String userId = "13031226136";
-			
+
 			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
 
 			MyOlayIVRSrv srv = new MyOlayIVRSrv(url);

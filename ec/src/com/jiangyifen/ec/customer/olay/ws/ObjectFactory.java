@@ -25,14 +25,14 @@ import com.rmi.RemoteException;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _PointReturnObjectDesc_QNAME = new QName("http://bean.ws.myolay.accentiv", "desc");
-    private final static QName _PointReturnObjectResult_QNAME = new QName("http://bean.ws.myolay.accentiv", "result");
     private final static QName _RemoteException_QNAME = new QName("http://IVR.myolay.www.accentiv.cn", "RemoteException");
     private final static QName _SMSMemberPointAccountCategory_QNAME = new QName("http://bean.ws.myolay.accentiv", "accountCategory");
     private final static QName _SMSMemberPointName_QNAME = new QName("http://bean.ws.myolay.accentiv", "name");
     private final static QName _SMSMemberPointPlaceCode_QNAME = new QName("http://bean.ws.myolay.accentiv", "placeCode");
     private final static QName _SMSMemberPointCity_QNAME = new QName("http://bean.ws.myolay.accentiv", "city");
     private final static QName _SMSMemberPointMemberID_QNAME = new QName("http://bean.ws.myolay.accentiv", "memberID");
+    private final static QName _PointReturnObjectDesc_QNAME = new QName("http://bean.ws.myolay.accentiv", "desc");
+    private final static QName _PointReturnObjectResult_QNAME = new QName("http://bean.ws.myolay.accentiv", "result");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.jiangyifen.ec.customer.olay.ws
@@ -66,6 +66,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SendSMS }
+     * 
+     */
+    public SendSMS createSendSMS() {
+        return new SendSMS();
+    }
+
+    /**
      * Create an instance of {@link StartCall }
      * 
      */
@@ -95,6 +103,14 @@ public class ObjectFactory {
      */
     public EnterVipChannel createEnterVipChannel() {
         return new EnterVipChannel();
+    }
+
+    /**
+     * Create an instance of {@link SendSMSResponse }
+     * 
+     */
+    public SendSMSResponse createSendSMSResponse() {
+        return new SendSMSResponse();
     }
 
     /**
@@ -154,24 +170,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "desc", scope = PointReturnObject.class)
-    public JAXBElement<String> createPointReturnObjectDesc(String value) {
-        return new JAXBElement<String>(_PointReturnObjectDesc_QNAME, String.class, PointReturnObject.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SMSMemberPoint }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "result", scope = PointReturnObject.class)
-    public JAXBElement<SMSMemberPoint> createPointReturnObjectResult(SMSMemberPoint value) {
-        return new JAXBElement<SMSMemberPoint>(_PointReturnObjectResult_QNAME, SMSMemberPoint.class, PointReturnObject.class, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RemoteException }{@code >}}
      * 
      */
@@ -223,6 +221,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "memberID", scope = SMSMemberPoint.class)
     public JAXBElement<String> createSMSMemberPointMemberID(String value) {
         return new JAXBElement<String>(_SMSMemberPointMemberID_QNAME, String.class, SMSMemberPoint.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "desc", scope = PointReturnObject.class)
+    public JAXBElement<String> createPointReturnObjectDesc(String value) {
+        return new JAXBElement<String>(_PointReturnObjectDesc_QNAME, String.class, PointReturnObject.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SMSMemberPoint }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "result", scope = PointReturnObject.class)
+    public JAXBElement<SMSMemberPoint> createPointReturnObjectResult(SMSMemberPoint value) {
+        return new JAXBElement<SMSMemberPoint>(_PointReturnObjectResult_QNAME, SMSMemberPoint.class, PointReturnObject.class, value);
     }
 
 }

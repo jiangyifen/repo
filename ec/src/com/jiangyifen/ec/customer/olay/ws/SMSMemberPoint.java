@@ -21,9 +21,11 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountCategory" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="availablePoint" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="expirationPoint" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="memberID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="placeCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pointC" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="totalPoint" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -38,9 +40,11 @@ import javax.xml.bind.annotation.XmlType;
     "accountCategory",
     "availablePoint",
     "city",
+    "expirationPoint",
     "memberID",
     "name",
     "placeCode",
+    "pointC",
     "totalPoint"
 })
 public class SMSMemberPoint {
@@ -50,12 +54,14 @@ public class SMSMemberPoint {
     protected Integer availablePoint;
     @XmlElementRef(name = "city", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> city;
+    protected Integer expirationPoint;
     @XmlElementRef(name = "memberID", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> memberID;
     @XmlElementRef(name = "name", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> name;
     @XmlElementRef(name = "placeCode", namespace = "http://bean.ws.myolay.accentiv", type = JAXBElement.class)
     protected JAXBElement<String> placeCode;
+    protected Integer pointC;
     protected Integer totalPoint;
 
     /**
@@ -131,6 +137,30 @@ public class SMSMemberPoint {
     }
 
     /**
+     * ��ȡexpirationPoint���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getExpirationPoint() {
+        return expirationPoint;
+    }
+
+    /**
+     * ����expirationPoint���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setExpirationPoint(Integer value) {
+        this.expirationPoint = value;
+    }
+
+    /**
      * ��ȡmemberID���Ե�ֵ��
      * 
      * @return
@@ -200,6 +230,30 @@ public class SMSMemberPoint {
      */
     public void setPlaceCode(JAXBElement<String> value) {
         this.placeCode = value;
+    }
+
+    /**
+     * ��ȡpointC���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getPointC() {
+        return pointC;
+    }
+
+    /**
+     * ����pointC���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setPointC(Integer value) {
+        this.pointC = value;
     }
 
     /**
