@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiangyifen.ec.dao.HoldEventLog" table="ec_hold_event_log">
+        <id name="id">
+            <column name="id" not-null="true"/>
+            <generator class="identity"/>
+        </id>
+        <property name="exten" not-null="true" length="32"/>
+        <property name="channel" not-null="true" length="32"/>
+        <property name="uniqueid" not-null="true" length="32"/>
+        <property name="holdDate" not-null="false"/>
+        <property name="unholdDate" not-null="false"/>
+	</class>
+</hibernate-mapping>

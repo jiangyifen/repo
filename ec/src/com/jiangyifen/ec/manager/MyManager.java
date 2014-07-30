@@ -22,8 +22,8 @@ import org.asteriskjava.manager.response.ManagerResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import com.jiangyifen.ec.biz.CdrManager;
+import com.jiangyifen.ec.biz.HoldEventLogManager;
 import com.jiangyifen.ec.biz.QueueCallerAbandonEventLogManager;
 import com.jiangyifen.ec.biz.QueueEntryEventLogManager;
 import com.jiangyifen.ec.biz.QueueMemberPauseLogManager;
@@ -34,7 +34,8 @@ import com.jiangyifen.ec.util.Config;
 
 public class MyManager extends Thread {
 
-	private static final Logger logger = LoggerFactory.getLogger(MyManager.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(MyManager.class);
 
 	private static String ip;
 	private static String username;
@@ -50,6 +51,7 @@ public class MyManager extends Thread {
 	protected static QueueCallerAbandonEventLogManager queueCallerAbandonEventLogManager;
 	protected static QueueMemberPauseLogManager queueMemberPauseLogManager;
 
+	protected static HoldEventLogManager holdEventLogManager;
 
 	// 保存系统状态的一些容器
 	private static ConcurrentHashMap<String, String> activeChannels = new ConcurrentHashMap<String, String>();
@@ -97,6 +99,10 @@ public class MyManager extends Thread {
 	public void setQueueMemberPauseLogManager(
 			QueueMemberPauseLogManager queueMemberPauseLogManager) {
 		MyManager.queueMemberPauseLogManager = queueMemberPauseLogManager;
+	}
+
+	public void setHoldEventLogManager(HoldEventLogManager holdEventLogManager) {
+		MyManager.holdEventLogManager = holdEventLogManager;
 	}
 
 	public static void sendEventGeneratingAction(EventGeneratingAction action) {

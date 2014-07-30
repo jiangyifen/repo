@@ -55,6 +55,7 @@
                                 <value>ShiftConfig.hbm.xml</value>
                                 <value>IVRLog.hbm.xml</value>
                                 <value>LinkLog.hbm.xml</value>
+                                <value>HoldEventLog.hbm.xml</value>
                         </list>
                 </property>
                 <property name="hibernateProperties">
@@ -327,6 +328,14 @@
                 <property name="linkLogDao" ref="linkLogDao" />
         </bean>
 
+        <bean id="holdEventLogDao" class="com.jiangyifen.ec.dao.HoldEventLogDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+                
+        <bean id="holdEventLogManager" class="com.jiangyifen.ec.biz.HoldEventLogManagerImpl">
+                <property name="holdEventLogDao" ref="holdEventLogDao" />
+        </bean>
+
 
 
         <bean id="transactionManager"
@@ -384,6 +393,7 @@
                                 <value>shiftConfigManager</value>
                                 <value>ivrLogManager</value>
                                 <value>linkLogManager</value>
+                                <value>holdEventLogManager</value>
                         </list>
                 </property>
 
@@ -421,6 +431,7 @@
                 <property name="queueEntryEventLogManager" ref="queueEntryEventLogManager" />
                 <property name="queueCallerAbandonEventLogManager" ref="queueCallerAbandonEventLogManager" />
                 <property name="queueMemberPauseLogManager" ref="queueMemberPauseLogManager" />
+                <property name="holdEventLogManager" ref="holdEventLogManager"/>
         </bean>
  -->
         <!-- DateRefresh -->

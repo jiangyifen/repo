@@ -85,6 +85,7 @@ public class OlayWSIVRPointQuery extends BaseAgiScript {
 
 			logger.info("JJJ: totalPoint=" + totalPoint);
 			logger.info("JJJ: availablePoint=" + availablePoint);
+			logger.info("JJJ: pointC="+pointC);
 
 			setVariable("exitCode", exitCode.toString());
 			setVariable("totalPoint", totalPoint);
