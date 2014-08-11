@@ -159,7 +159,7 @@ public class GetChartOverallReportNewAction extends BaseAction {
 			}
 
 			// 自助语音量
-			sql = "select SUBSTRING(date::text,12,2),node,count(*) from ec_ivr_log where (node='1' or node='faq') and date>='"
+			sql = "select SUBSTRING(date::text,12,2),node,count(*) from ec_ivr_log where node='1_jfdh' and date>='"
 					+ beginTime
 					+ " 00:00:00' and date<='"
 					+ endTime
@@ -207,7 +207,7 @@ public class GetChartOverallReportNewAction extends BaseAction {
 			for (int i = 0; i <= 23; i++) {
 				String time = i + ":00 ~ " + (i + 1) + ":00";
 				int l_totalIncomingCount = totalIncomingCount[i];
-				int l_totalRengongCount = totalRengongCount[i];
+//				int l_totalRengongCount = totalRengongCount[i];
 				int l_totalQueueEntryCount = totalQueueEntryCount[i];
 //				int l_totalQueueEntryAbandonCount = totalQueueEntryAbandonCount[i];
 				int l_totalIVRCount = totalIVRCount[i];
@@ -218,7 +218,7 @@ public class GetChartOverallReportNewAction extends BaseAction {
 
 				String result = time + "," 
 						+ l_totalIncomingCount + ","
-						+ l_totalRengongCount + "," 
+//						+ l_totalRengongCount + "," 
 						+ l_totalQueueEntryCount + "," 
 //						+ l_totalQueueEntryAbandonCount + ","
 						+ l_totalQueueEntryAnswerCount + ","
@@ -293,24 +293,21 @@ public class GetChartOverallReportNewAction extends BaseAction {
 			cell.setCellValue("呼入总量");
 
 			cell = row.createCell(2);
-			cell.setCellValue("人工服务量");
-
-			cell = row.createCell(3);
 			cell.setCellValue("队列进入量");
 
-			cell = row.createCell(4);
+			cell = row.createCell(3);
 			cell.setCellValue("接起量");
 
-			cell = row.createCell(5);
+			cell = row.createCell(4);
 			cell.setCellValue("接起率");
 
-			cell = row.createCell(6);
+			cell = row.createCell(5);
 			cell.setCellValue("自助语音量");
 
-			cell = row.createCell(7);
+			cell = row.createCell(6);
 			cell.setCellValue("自主挂断量");
 
-			cell = row.createCell(8);
+			cell = row.createCell(7);
 			cell.setCellValue("留言量");
 
 			for (int rownum = 0; rownum < excelResult.size(); rownum++) {
