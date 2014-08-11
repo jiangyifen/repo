@@ -178,7 +178,7 @@ public class GetChartOverallReportNewAction extends BaseAction {
 					+ beginTime
 					+ " 00:00:00' and calldate<='"
 					+ endTime
-					+ " 23:59:59' and SUBSTRING(dst::text,1,10)='ivrroot' group by SUBSTRING(calldate::text,12,2),SUBSTRING(dst::text,1,7) order by SUBSTRING(calldate::text,12,2);";
+					+ " 23:59:59' and dcontext='incoming' and SUBSTRING(dst::text,1,10)='ivrroot' group by SUBSTRING(calldate::text,12,2),SUBSTRING(dst::text,1,7) order by SUBSTRING(calldate::text,12,2);";
 			logger.info(sql);
 			statement = con.prepareStatement(sql);
 			rs = statement.executeQuery();
