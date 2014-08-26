@@ -32,6 +32,7 @@ public class OlayWSValidateAccountTest extends BaseAgiScript {
 			initClient();
 
 			String userId = request.getParameter("userId");
+			String quanmingduihuan = request.getParameter("quanmingduihuan");
 
 			Object[] objects = client.invoke("validateAccount", userId);
 
@@ -61,15 +62,32 @@ public class OlayWSValidateAccountTest extends BaseAgiScript {
 
 			int points = Integer.valueOf(availablePoints).intValue();
 
-			if (points < 4500) {
-				level = "0";
-				lowpoint = "true";
-			} else if (4500 <= points && points < 9000) {
-				level = "4500";
-			} else if (9000 <= points && points < 15000) {
-				level = "9000";
-			} else if (15000 <= points) {
-				level = "15000";
+			if (quanmingduihuan != null && quanmingduihuan.equals("true")) {
+				if (points < 1500) {
+					level = "0";
+					lowpoint = "true";
+				} else if (1500 <= points && points < 3000) {
+					level = "1500";
+				} else if (3000 <= points && points < 4500) {
+					level = "3000";
+				} else if (4500 <= points && points < 9000) {
+					level = "4500";
+				} else if (9000 <= points && points < 15000) {
+					level = "9000";
+				} else if (15000 <= points) {
+					level = "15000";
+				}
+			}else{
+				if (points < 4500) {
+					level = "0";
+					lowpoint = "true";
+				} else if (4500 <= points && points < 9000) {
+					level = "4500";
+				} else if (9000 <= points && points < 15000) {
+					level = "9000";
+				} else if (15000 <= points) {
+					level = "15000";
+				}
 			}
 			// 普通会员
 			if (accountCategory.equals("1")) {
