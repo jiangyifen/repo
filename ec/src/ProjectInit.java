@@ -139,14 +139,14 @@ public class ProjectInit {
 //		userINSERT(1001,1006);
 //		printDefaultQueueINSERT(8001,8006);
 
-//		printSipInsert(8001,8006);
+		printSipInsert(8200,8200);
 
 //		printSipInsert(8001,8008);
 
 //		printCtiserver("192.168.1.157");
 
 //		printQueueINSERT(1,1);
-		printQueueMemberINSERT("vip",10,8086,8095);
+//		printQueueMemberINSERT("vip",10,8086,8095);
 		
 //		printExtenAndOutline(8861,8866,31268888);
 //		printExtenAndOutline(8877,8877,31268888);
