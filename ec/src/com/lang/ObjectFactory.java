@@ -30,6 +30,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Byte }
+     * 
+     */
+    public Byte createByte() {
+        return new Byte();
+    }
+
+    /**
      * Create an instance of {@link Throwable }
      * 
      */
