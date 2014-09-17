@@ -99,8 +99,8 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 
 			MyOlayIVRSrvPortType pt = srv.getMyOlayIVRSrvHttpPort();
 
-			JAXBElement<String> accountNumber = new JAXBElement<String>(srv.getServiceName(),String.class,"01140010987");
-			JAXBElement<String> mobile = new JAXBElement<String>(srv.getServiceName(),String.class,"13761488223");
+			JAXBElement<String> accountNumber = new JAXBElement<String>(new QName("http://IVR.myolay.www.accentiv.cn","accountNumber"),String.class,"01140010987");
+			JAXBElement<String> mobile = new JAXBElement<String>(new QName("http://IVR.myolay.www.accentiv.cn","mobile"),String.class,"13391026171");
 			
 			System.out.println(srv.getServiceName().toString());
 			MemberInfo memberInfo = new MemberInfo();
