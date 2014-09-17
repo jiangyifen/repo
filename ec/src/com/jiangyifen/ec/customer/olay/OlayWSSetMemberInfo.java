@@ -46,15 +46,15 @@ public class OlayWSSetMemberInfo extends BaseAgiScript {
 			String getMemberInfo_accountNumber = getVariable("getMemberInfo_accountNumber");
 			String setMemberInfo_new_mobile = getVariable("setMemberInfo_new_mobile");
 
-			logger.info("set member info: getMemberInfo_accountNumber = "
+			logger.info("setMemberInfo: getMemberInfo_accountNumber = "
 					+ getMemberInfo_accountNumber);
-			logger.info("set member info: setMemberInfo_new_mobile = "
+			logger.info("setMemberInfo: setMemberInfo_new_mobile = "
 					+ setMemberInfo_new_mobile);
 
 			Integer exitCode = setMemberInfo(getMemberInfo_accountNumber,
 					setMemberInfo_new_mobile);
 
-			logger.info("set member info: exitCode=" + exitCode);
+			logger.info("setMemberInfo: exitCode=" + exitCode);
 
 			setVariable("setMemberInfo_exitCode", exitCode.toString());
 
@@ -98,15 +98,15 @@ public class OlayWSSetMemberInfo extends BaseAgiScript {
 			String getMemberInfo_accountNumber = "01140010987";
 			String setMemberInfo_new_mobile = "13761488223";
 
-			logger.info("set member info: getMemberInfo_accountNumber = "
+			logger.info("setMemberInfo: getMemberInfo_accountNumber = "
 					+ getMemberInfo_accountNumber);
-			logger.info("set member info: setMemberInfo_new_mobile = "
+			logger.info("setMemberInfo: setMemberInfo_new_mobile = "
 					+ setMemberInfo_new_mobile);
 
 			Integer exitCode = setMemberInfo(getMemberInfo_accountNumber,
 					setMemberInfo_new_mobile);
 
-			logger.info("set member info: exitCode=" + exitCode);
+			logger.info("setMemberInfo: exitCode=" + exitCode);
 
 		} catch (RemoteException e) {
 			logger.error(e.getMessage(), e);
