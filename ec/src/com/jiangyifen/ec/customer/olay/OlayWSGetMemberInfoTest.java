@@ -86,7 +86,7 @@ public class OlayWSGetMemberInfoTest extends BaseAgiScript {
 			// 07130386553
 			// 09130003411
 
-			String accountNumber = "09130003411";
+			String accountNumber = "01140010987";
 
 			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
 

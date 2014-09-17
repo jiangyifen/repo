@@ -91,12 +91,7 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 			// 07130386553
 			// 09130003411
 
-			JAXBElement<String> accountNumber = new JAXBElement<String>(new QName("http://olayuat.crmyymd.com","MyOlayIVRSrv"),String.class,"01140010987");
-			JAXBElement<String> mobile = new JAXBElement<String>(new QName("http://olayuat.crmyymd.com","MyOlayIVRSrv"),String.class,"13761488223");
-			
-			MemberInfo memberInfo = new MemberInfo();
-			memberInfo.setAccountNumber(accountNumber);
-			memberInfo.setMobile(mobile);
+		
 
 			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
 
@@ -104,6 +99,15 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 
 			MyOlayIVRSrvPortType pt = srv.getMyOlayIVRSrvHttpPort();
 
+			JAXBElement<String> accountNumber = new JAXBElement<String>(srv.getServiceName(),String.class,"01140010987");
+			JAXBElement<String> mobile = new JAXBElement<String>(srv.getServiceName(),String.class,"13761488223");
+			
+			System.out.println(srv.getServiceName().toString());
+			MemberInfo memberInfo = new MemberInfo();
+			memberInfo.setAccountNumber(accountNumber);
+			memberInfo.setMobile(mobile);
+			
+			
 			WebReturnObject rt = pt.setmemberinfo(memberInfo);
 
 			Integer exitCode = rt.getExitCode();
