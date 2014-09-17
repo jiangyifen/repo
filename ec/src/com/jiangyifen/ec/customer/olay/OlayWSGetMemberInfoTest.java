@@ -24,7 +24,7 @@ public class OlayWSGetMemberInfoTest extends BaseAgiScript {
 
 	private static MyOlayIVRSrvPortType pt = null;
 
-	private void initClient() {
+	private static void initClient() {
 		try {
 			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
 			srv = new MyOlayIVRSrv(url);
@@ -40,15 +40,17 @@ public class OlayWSGetMemberInfoTest extends BaseAgiScript {
 
 		try {
 
+			String getMemberInfo_accountNumber = getVariable("getMemberInfo_accountNumber");
+
+			logger.info("get member info: getMemberInfo_accountNumber="
+					+ getMemberInfo_accountNumber);
+
 			if (srv == null || pt == null) {
 				initClient();
 			}
 
-			String accountNumber = request.getParameter("accountNumber");
-
-			logger.info("member info: accountNumber=" + accountNumber);
-
-			MemberInfoReturnObject rt = pt.getmemberinfo(accountNumber);
+			MemberInfoReturnObject rt = pt
+					.getmemberinfo(getMemberInfo_accountNumber);
 
 			Integer exitCode = rt.getExitCode();
 
@@ -62,10 +64,10 @@ public class OlayWSGetMemberInfoTest extends BaseAgiScript {
 				mobile = rt.getResult().getValue().getMobile().getValue();
 			}
 
-			logger.info("member info: exitCode=" + exitCode);
-			logger.info("member info: accountID=" + accountID);
-			logger.info("member info: birthday=" + birthday);
-			logger.info("member info: mobile=" + mobile);
+			logger.info("get member info: exitCode=" + exitCode);
+			logger.info("get member info: accountID=" + accountID);
+			logger.info("get member info: birthday=" + birthday);
+			logger.info("get member info: mobile=" + mobile);
 
 			setVariable("getMemberInfo_exitCode", exitCode.toString());
 			setVariable("getMemberInfo_accountID", accountID.toString());
@@ -88,13 +90,11 @@ public class OlayWSGetMemberInfoTest extends BaseAgiScript {
 
 			String accountNumber = "01140010987";
 
-			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
+			logger.info("get member info: accountNumber=" + accountNumber);
 
-			MyOlayIVRSrv srv = new MyOlayIVRSrv(url);
-
-			MyOlayIVRSrvPortType pt = srv.getMyOlayIVRSrvHttpPort();
-
-			logger.info("member info: " + accountNumber);
+			if (srv == null || pt == null) {
+				initClient();
+			}
 
 			MemberInfoReturnObject rt = pt.getmemberinfo(accountNumber);
 
@@ -110,17 +110,13 @@ public class OlayWSGetMemberInfoTest extends BaseAgiScript {
 				mobile = rt.getResult().getValue().getMobile().getValue();
 			}
 
-			logger.info("member info: exitCode=" + exitCode);
-			logger.info("member info: accountID=" + accountID);
-			logger.info("member info: birthday=" + birthday);
-			logger.info("member info: mobile=" + mobile);
+			logger.info("get member info: exitCode=" + exitCode);
+			logger.info("get member info: accountID=" + accountID);
+			logger.info("get member info: birthday=" + birthday);
+			logger.info("get member info: mobile=" + mobile);
 
 		} catch (RemoteException e) {
-
 			logger.error(e.getMessage(), e);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }

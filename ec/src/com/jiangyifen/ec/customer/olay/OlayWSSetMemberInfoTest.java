@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jiangyifen.ec.customer.olay.ws.MemberInfo;
-import com.jiangyifen.ec.customer.olay.ws.MemberInfoReturnObject;
 import com.jiangyifen.ec.customer.olay.ws.MyOlayIVRSrv;
 import com.jiangyifen.ec.customer.olay.ws.MyOlayIVRSrvPortType;
 import com.jiangyifen.ec.customer.olay.ws.RemoteException;
@@ -29,7 +28,7 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 
 	private static MyOlayIVRSrvPortType pt = null;
 
-	private void initClient() {
+	private static void initClient() {
 		try {
 			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
 			srv = new MyOlayIVRSrv(url);
@@ -37,7 +36,6 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 		} catch (MalformedURLException e) {
 			logger.error(e.getMessage(), e);
 		}
-
 	}
 
 	public void service(AgiRequest request, AgiChannel channel)
@@ -45,37 +43,20 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 
 		try {
 
-			if (srv == null || pt == null) {
-				initClient();
-			}
+			String getMemberInfo_accountNumber = getVariable("getMemberInfo_accountNumber");
+			String setMemberInfo_new_mobile = getVariable("setMemberInfo_new_mobile");
 
-			String accountNumber = request.getParameter("accountNumber");
+			logger.info("set member info: getMemberInfo_accountNumber = "
+					+ getMemberInfo_accountNumber);
+			logger.info("set member info: setMemberInfo_new_mobile = "
+					+ setMemberInfo_new_mobile);
 
-			logger.info("member info: accountNumber=" + accountNumber);
+			Integer exitCode = setMemberInfo(getMemberInfo_accountNumber,
+					setMemberInfo_new_mobile);
 
-			MemberInfoReturnObject rt = pt.getmemberinfo(accountNumber);
+			logger.info("set member info: exitCode=" + exitCode);
 
-			Integer exitCode = rt.getExitCode();
-
-			Integer accountID = 0;
-			String birthday = "";
-			String mobile = "";
-
-			if (exitCode == 0) {
-				accountID = rt.getResult().getValue().getAccountID();
-				birthday = rt.getResult().getValue().getBirthday().getValue();
-				mobile = rt.getResult().getValue().getMobile().getValue();
-			}
-
-			logger.info("member info: exitCode=" + exitCode);
-			logger.info("member info: accountID=" + accountID);
-			logger.info("member info: birthday=" + birthday);
-			logger.info("member info: mobile=" + mobile);
-
-			setVariable("getMemberInfo_exitCode", exitCode.toString());
-			setVariable("getMemberInfo_accountID", accountID.toString());
-			setVariable("getMemberInfo_birthday", birthday);
-			setVariable("getMemberInfo_mobile", mobile);
+			setVariable("setMemberInfo_exitCode", exitCode.toString());
 
 		} catch (RemoteException e) {
 			initClient();
@@ -83,6 +64,30 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 		}
 	}
 
+	private static Integer setMemberInfo(String accountNumber, String mobile)
+			throws RemoteException {
+		if (srv == null || pt == null) {
+			initClient();
+		}
+
+		MemberInfo memberInfo = new MemberInfo();
+
+		memberInfo.setAccountNumber(new JAXBElement<String>(new QName(
+				"http://web.myolay.www.accentiv.cn", "accountNumber"),
+				String.class, accountNumber));
+
+		memberInfo.setMobile(new JAXBElement<String>(new QName(
+				"http://web.myolay.www.accentiv.cn", "mobile"), String.class,
+				mobile));
+
+		WebReturnObject returnObject = pt.setmemberinfo(memberInfo);
+
+		Integer exitCode = returnObject.getExitCode();
+
+		return exitCode;
+	}
+	
+	
 	public static void main(String[] args) {
 		try {
 
@@ -90,33 +95,20 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 			// 01140011925
 			// 07130386553
 			// 09130003411
+			String getMemberInfo_accountNumber = "01140010987";
+			String setMemberInfo_new_mobile = "13761488223";
 
-		
+			logger.info("set member info: getMemberInfo_accountNumber = "
+					+ getMemberInfo_accountNumber);
+			logger.info("set member info: setMemberInfo_new_mobile = "
+					+ setMemberInfo_new_mobile);
 
-			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
+			Integer exitCode = setMemberInfo(getMemberInfo_accountNumber,
+					setMemberInfo_new_mobile);
 
-			MyOlayIVRSrv srv = new MyOlayIVRSrv(url);
-
-			MyOlayIVRSrvPortType pt = srv.getMyOlayIVRSrvHttpPort();
-
-			JAXBElement<String> accountNumber = new JAXBElement<String>(new QName("http://IVR.myolay.www.accentiv.cn","accountNumber"),String.class,"01140010987");
-			JAXBElement<String> mobile = new JAXBElement<String>(new QName("http://IVR.myolay.www.accentiv.cn","mobile"),String.class,"13391026171");
-			
-			System.out.println(srv.getServiceName().toString());
-			MemberInfo memberInfo = new MemberInfo();
-			memberInfo.setAccountNumber(accountNumber);
-			memberInfo.setMobile(mobile);
-			
-			
-			WebReturnObject rt = pt.setmemberinfo(memberInfo);
-
-			Integer exitCode = rt.getExitCode();
-
-			logger.info("member info: exitCode=" + exitCode);
+			logger.info("set member info: exitCode=" + exitCode);
 
 		} catch (RemoteException e) {
-			logger.error(e.getMessage(), e);
-		} catch (MalformedURLException e) {
 			logger.error(e.getMessage(), e);
 		}
 	}

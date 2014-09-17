@@ -67,6 +67,7 @@ public class OlayWSGetMemberInfo extends BaseAgiScript {
 			logger.info("member info: birthday=" + birthday);
 			logger.info("member info: mobile=" + mobile);
 
+			setVariable("getMemberInfo_accountNumber", accountNumber);
 			setVariable("getMemberInfo_exitCode", exitCode.toString());
 			setVariable("getMemberInfo_accountID", accountID.toString());
 			setVariable("getMemberInfo_birthday", birthday);
