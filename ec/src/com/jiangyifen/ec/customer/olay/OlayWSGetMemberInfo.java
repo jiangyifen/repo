@@ -18,7 +18,7 @@ import com.jiangyifen.ec.customer.olay.ws.RemoteException;
 public class OlayWSGetMemberInfo extends BaseAgiScript {
 
 	private static Logger logger = LoggerFactory
-			.getLogger(OlayWSGetMemberInfo.class);
+			.getLogger(OlayWSGetMemberInfoTest.class);
 
 	private static MyOlayIVRSrv srv = null;
 
@@ -39,20 +39,20 @@ public class OlayWSGetMemberInfo extends BaseAgiScript {
 			throws AgiException {
 
 		try {
+			if (srv == null || pt == null) {
+				initClient();
+			}
 
 			String getMemberInfo_accountNumber = getVariable("getMemberInfo_accountNumber");
 
 			logger.info("getMemberInfo: getMemberInfo_accountNumber="
 					+ getMemberInfo_accountNumber);
 
-			if (srv == null || pt == null) {
-				initClient();
-			}
-
 			MemberInfoReturnObject rt = pt
 					.getmemberinfo(getMemberInfo_accountNumber);
 
 			Integer exitCode = rt.getExitCode();
+			logger.info("getMemberInfo: exitCode=" + exitCode);
 
 			Integer accountID = 0;
 			String birthday = "";
@@ -64,7 +64,6 @@ public class OlayWSGetMemberInfo extends BaseAgiScript {
 				mobile = rt.getResult().getValue().getMobile().getValue();
 			}
 
-			logger.info("getMemberInfo: exitCode=" + exitCode);
 			logger.info("getMemberInfo: accountID=" + accountID);
 			logger.info("getMemberInfo: birthday=" + birthday);
 			logger.info("getMemberInfo: mobile=" + mobile);
@@ -92,9 +91,7 @@ public class OlayWSGetMemberInfo extends BaseAgiScript {
 
 			logger.info("getMemberInfo: accountNumber=" + accountNumber);
 
-			if (srv == null || pt == null) {
-				initClient();
-			}
+			initClient();
 
 			MemberInfoReturnObject rt = pt.getmemberinfo(accountNumber);
 

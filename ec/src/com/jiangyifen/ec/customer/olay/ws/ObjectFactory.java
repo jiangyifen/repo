@@ -26,11 +26,9 @@ import com.rmi.RemoteException;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _SuveryInfoOther_QNAME = new QName("http://web.myolay.www.accentiv.cn", "other");
+    private final static QName _WebReturnObjectDesc_QNAME = new QName("http://web.myolay.www.accentiv.cn", "desc");
+    private final static QName _WebReturnObjectResult_QNAME = new QName("http://web.myolay.www.accentiv.cn", "Result");
     private final static QName _RemoteException_QNAME = new QName("http://IVR.myolay.www.accentiv.cn", "RemoteException");
-    private final static QName _SNSAccountInfoBindDate_QNAME = new QName("http://web.myolay.www.accentiv.cn", "bindDate");
-    private final static QName _SNSAccountInfoSnsType_QNAME = new QName("http://web.myolay.www.accentiv.cn", "snsType");
-    private final static QName _SNSAccountInfoSnsAccount_QNAME = new QName("http://web.myolay.www.accentiv.cn", "snsAccount");
     private final static QName _MemberInfoSuveryInfos_QNAME = new QName("http://web.myolay.www.accentiv.cn", "suveryInfos");
     private final static QName _MemberInfoCityCode_QNAME = new QName("http://web.myolay.www.accentiv.cn", "cityCode");
     private final static QName _MemberInfoMobile_QNAME = new QName("http://web.myolay.www.accentiv.cn", "mobile");
@@ -43,13 +41,6 @@ public class ObjectFactory {
     private final static QName _MemberInfoName_QNAME = new QName("http://web.myolay.www.accentiv.cn", "name");
     private final static QName _MemberInfoEmail_QNAME = new QName("http://web.myolay.www.accentiv.cn", "email");
     private final static QName _MemberInfoAddress_QNAME = new QName("http://web.myolay.www.accentiv.cn", "address");
-    private final static QName _PointReturnObjectDesc_QNAME = new QName("http://bean.ws.myolay.accentiv", "desc");
-    private final static QName _PointReturnObjectResult_QNAME = new QName("http://bean.ws.myolay.accentiv", "result");
-    private final static QName _SMSMemberPointAccountCategory_QNAME = new QName("http://bean.ws.myolay.accentiv", "accountCategory");
-    private final static QName _SMSMemberPointName_QNAME = new QName("http://bean.ws.myolay.accentiv", "name");
-    private final static QName _SMSMemberPointPlaceCode_QNAME = new QName("http://bean.ws.myolay.accentiv", "placeCode");
-    private final static QName _SMSMemberPointCity_QNAME = new QName("http://bean.ws.myolay.accentiv", "city");
-    private final static QName _SMSMemberPointMemberID_QNAME = new QName("http://bean.ws.myolay.accentiv", "memberID");
     private final static QName _MemberInfoReadOfflineJoinDate_QNAME = new QName("http://web.myolay.www.accentiv.cn", "offlineJoinDate");
     private final static QName _MemberInfoReadOnlineRecommendFriendName_QNAME = new QName("http://web.myolay.www.accentiv.cn", "onlineRecommendFriendName");
     private final static QName _MemberInfoReadLastUpdateTime_QNAME = new QName("http://web.myolay.www.accentiv.cn", "lastUpdateTime");
@@ -64,8 +55,17 @@ public class ObjectFactory {
     private final static QName _MemberInfoReadStoreCode_QNAME = new QName("http://web.myolay.www.accentiv.cn", "storeCode");
     private final static QName _MemberInfoReadSpecialCode_QNAME = new QName("http://web.myolay.www.accentiv.cn", "specialCode");
     private final static QName _MemberInfoReadOnlineJoinDate_QNAME = new QName("http://web.myolay.www.accentiv.cn", "onlineJoinDate");
-    private final static QName _MemberInfoReturnObjectDesc_QNAME = new QName("http://web.myolay.www.accentiv.cn", "desc");
-    private final static QName _MemberInfoReturnObjectResult_QNAME = new QName("http://web.myolay.www.accentiv.cn", "Result");
+    private final static QName _SMSMemberPointAccountCategory_QNAME = new QName("http://bean.ws.myolay.accentiv", "accountCategory");
+    private final static QName _SMSMemberPointName_QNAME = new QName("http://bean.ws.myolay.accentiv", "name");
+    private final static QName _SMSMemberPointPlaceCode_QNAME = new QName("http://bean.ws.myolay.accentiv", "placeCode");
+    private final static QName _SMSMemberPointCity_QNAME = new QName("http://bean.ws.myolay.accentiv", "city");
+    private final static QName _SMSMemberPointMemberID_QNAME = new QName("http://bean.ws.myolay.accentiv", "memberID");
+    private final static QName _SNSAccountInfoBindDate_QNAME = new QName("http://web.myolay.www.accentiv.cn", "bindDate");
+    private final static QName _SNSAccountInfoSnsType_QNAME = new QName("http://web.myolay.www.accentiv.cn", "snsType");
+    private final static QName _SNSAccountInfoSnsAccount_QNAME = new QName("http://web.myolay.www.accentiv.cn", "snsAccount");
+    private final static QName _PointReturnObjectDesc_QNAME = new QName("http://bean.ws.myolay.accentiv", "desc");
+    private final static QName _PointReturnObjectResult_QNAME = new QName("http://bean.ws.myolay.accentiv", "result");
+    private final static QName _SuveryInfoOther_QNAME = new QName("http://web.myolay.www.accentiv.cn", "other");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.jiangyifen.ec.customer.olay.ws
@@ -179,14 +179,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ValidateAccountResponse }
-     * 
-     */
-    public ValidateAccountResponse createValidateAccountResponse() {
-        return new ValidateAccountResponse();
-    }
-
-    /**
      * Create an instance of {@link StartCall }
      * 
      */
@@ -200,6 +192,14 @@ public class ObjectFactory {
      */
     public SetmemberinfoResponse createSetmemberinfoResponse() {
         return new SetmemberinfoResponse();
+    }
+
+    /**
+     * Create an instance of {@link ValidateAccountResponse }
+     * 
+     */
+    public ValidateAccountResponse createValidateAccountResponse() {
+        return new ValidateAccountResponse();
     }
 
     /**
@@ -302,9 +302,18 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "other", scope = SuveryInfo.class)
-    public JAXBElement<String> createSuveryInfoOther(String value) {
-        return new JAXBElement<String>(_SuveryInfoOther_QNAME, String.class, SuveryInfo.class, value);
+    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "desc", scope = WebReturnObject.class)
+    public JAXBElement<String> createWebReturnObjectDesc(String value) {
+        return new JAXBElement<String>(_WebReturnObjectDesc_QNAME, String.class, WebReturnObject.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "Result", scope = WebReturnObject.class)
+    public JAXBElement<String> createWebReturnObjectResult(String value) {
+        return new JAXBElement<String>(_WebReturnObjectResult_QNAME, String.class, WebReturnObject.class, value);
     }
 
     /**
@@ -314,33 +323,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://IVR.myolay.www.accentiv.cn", name = "RemoteException")
     public JAXBElement<RemoteException> createRemoteException(RemoteException value) {
         return new JAXBElement<RemoteException>(_RemoteException_QNAME, RemoteException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "bindDate", scope = SNSAccountInfo.class)
-    public JAXBElement<String> createSNSAccountInfoBindDate(String value) {
-        return new JAXBElement<String>(_SNSAccountInfoBindDate_QNAME, String.class, SNSAccountInfo.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Integer }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "snsType", scope = SNSAccountInfo.class)
-    public JAXBElement<Integer> createSNSAccountInfoSnsType(Integer value) {
-        return new JAXBElement<Integer>(_SNSAccountInfoSnsType_QNAME, Integer.class, SNSAccountInfo.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "snsAccount", scope = SNSAccountInfo.class)
-    public JAXBElement<String> createSNSAccountInfoSnsAccount(String value) {
-        return new JAXBElement<String>(_SNSAccountInfoSnsAccount_QNAME, String.class, SNSAccountInfo.class, value);
     }
 
     /**
@@ -449,69 +431,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "address", scope = MemberInfo.class)
     public JAXBElement<String> createMemberInfoAddress(String value) {
         return new JAXBElement<String>(_MemberInfoAddress_QNAME, String.class, MemberInfo.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "desc", scope = PointReturnObject.class)
-    public JAXBElement<String> createPointReturnObjectDesc(String value) {
-        return new JAXBElement<String>(_PointReturnObjectDesc_QNAME, String.class, PointReturnObject.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SMSMemberPoint }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "result", scope = PointReturnObject.class)
-    public JAXBElement<SMSMemberPoint> createPointReturnObjectResult(SMSMemberPoint value) {
-        return new JAXBElement<SMSMemberPoint>(_PointReturnObjectResult_QNAME, SMSMemberPoint.class, PointReturnObject.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "accountCategory", scope = SMSMemberPoint.class)
-    public JAXBElement<String> createSMSMemberPointAccountCategory(String value) {
-        return new JAXBElement<String>(_SMSMemberPointAccountCategory_QNAME, String.class, SMSMemberPoint.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "name", scope = SMSMemberPoint.class)
-    public JAXBElement<String> createSMSMemberPointName(String value) {
-        return new JAXBElement<String>(_SMSMemberPointName_QNAME, String.class, SMSMemberPoint.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "placeCode", scope = SMSMemberPoint.class)
-    public JAXBElement<String> createSMSMemberPointPlaceCode(String value) {
-        return new JAXBElement<String>(_SMSMemberPointPlaceCode_QNAME, String.class, SMSMemberPoint.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "city", scope = SMSMemberPoint.class)
-    public JAXBElement<String> createSMSMemberPointCity(String value) {
-        return new JAXBElement<String>(_SMSMemberPointCity_QNAME, String.class, SMSMemberPoint.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "memberID", scope = SMSMemberPoint.class)
-    public JAXBElement<String> createSMSMemberPointMemberID(String value) {
-        return new JAXBElement<String>(_SMSMemberPointMemberID_QNAME, String.class, SMSMemberPoint.class, value);
     }
 
     /**
@@ -754,7 +673,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "desc", scope = MemberInfoReturnObject.class)
     public JAXBElement<String> createMemberInfoReturnObjectDesc(String value) {
-        return new JAXBElement<String>(_MemberInfoReturnObjectDesc_QNAME, String.class, MemberInfoReturnObject.class, value);
+        return new JAXBElement<String>(_WebReturnObjectDesc_QNAME, String.class, MemberInfoReturnObject.class, value);
     }
 
     /**
@@ -763,25 +682,106 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "Result", scope = MemberInfoReturnObject.class)
     public JAXBElement<MemberInfoRead> createMemberInfoReturnObjectResult(MemberInfoRead value) {
-        return new JAXBElement<MemberInfoRead>(_MemberInfoReturnObjectResult_QNAME, MemberInfoRead.class, MemberInfoReturnObject.class, value);
+        return new JAXBElement<MemberInfoRead>(_WebReturnObjectResult_QNAME, MemberInfoRead.class, MemberInfoReturnObject.class, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "desc", scope = WebReturnObject.class)
-    public JAXBElement<String> createWebReturnObjectDesc(String value) {
-        return new JAXBElement<String>(_MemberInfoReturnObjectDesc_QNAME, String.class, WebReturnObject.class, value);
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "accountCategory", scope = SMSMemberPoint.class)
+    public JAXBElement<String> createSMSMemberPointAccountCategory(String value) {
+        return new JAXBElement<String>(_SMSMemberPointAccountCategory_QNAME, String.class, SMSMemberPoint.class, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "Result", scope = WebReturnObject.class)
-    public JAXBElement<String> createWebReturnObjectResult(String value) {
-        return new JAXBElement<String>(_MemberInfoReturnObjectResult_QNAME, String.class, WebReturnObject.class, value);
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "name", scope = SMSMemberPoint.class)
+    public JAXBElement<String> createSMSMemberPointName(String value) {
+        return new JAXBElement<String>(_SMSMemberPointName_QNAME, String.class, SMSMemberPoint.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "placeCode", scope = SMSMemberPoint.class)
+    public JAXBElement<String> createSMSMemberPointPlaceCode(String value) {
+        return new JAXBElement<String>(_SMSMemberPointPlaceCode_QNAME, String.class, SMSMemberPoint.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "city", scope = SMSMemberPoint.class)
+    public JAXBElement<String> createSMSMemberPointCity(String value) {
+        return new JAXBElement<String>(_SMSMemberPointCity_QNAME, String.class, SMSMemberPoint.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "memberID", scope = SMSMemberPoint.class)
+    public JAXBElement<String> createSMSMemberPointMemberID(String value) {
+        return new JAXBElement<String>(_SMSMemberPointMemberID_QNAME, String.class, SMSMemberPoint.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "bindDate", scope = SNSAccountInfo.class)
+    public JAXBElement<String> createSNSAccountInfoBindDate(String value) {
+        return new JAXBElement<String>(_SNSAccountInfoBindDate_QNAME, String.class, SNSAccountInfo.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Integer }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "snsType", scope = SNSAccountInfo.class)
+    public JAXBElement<Integer> createSNSAccountInfoSnsType(Integer value) {
+        return new JAXBElement<Integer>(_SNSAccountInfoSnsType_QNAME, Integer.class, SNSAccountInfo.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "snsAccount", scope = SNSAccountInfo.class)
+    public JAXBElement<String> createSNSAccountInfoSnsAccount(String value) {
+        return new JAXBElement<String>(_SNSAccountInfoSnsAccount_QNAME, String.class, SNSAccountInfo.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "desc", scope = PointReturnObject.class)
+    public JAXBElement<String> createPointReturnObjectDesc(String value) {
+        return new JAXBElement<String>(_PointReturnObjectDesc_QNAME, String.class, PointReturnObject.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SMSMemberPoint }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://bean.ws.myolay.accentiv", name = "result", scope = PointReturnObject.class)
+    public JAXBElement<SMSMemberPoint> createPointReturnObjectResult(SMSMemberPoint value) {
+        return new JAXBElement<SMSMemberPoint>(_PointReturnObjectResult_QNAME, SMSMemberPoint.class, PointReturnObject.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web.myolay.www.accentiv.cn", name = "other", scope = SuveryInfo.class)
+    public JAXBElement<String> createSuveryInfoOther(String value) {
+        return new JAXBElement<String>(_SuveryInfoOther_QNAME, String.class, SuveryInfo.class, value);
     }
 
 }
