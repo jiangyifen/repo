@@ -20,7 +20,7 @@ public class ProjectInit {
 
 	}
 
-	public static void printExtenAndOutline(int start, int end,int outline) {
+	public static void printExtenAndOutline(int start, int end,String outline) {
 		
 		for (int i = start; i <= end; i++) {
 
@@ -136,10 +136,10 @@ public class ProjectInit {
 	public static void main(String[] args) {
 		
 //		printSipExten(8001, 8006);
-//		userINSERT(1001,1006);
+		userINSERT(1201,1210);
 //		printDefaultQueueINSERT(8001,8006);
 
-		printSipInsert(8200,8200);
+//		printSipInsert(8201,8210);
 
 //		printSipInsert(8001,8008);
 
@@ -148,7 +148,7 @@ public class ProjectInit {
 //		printQueueINSERT(1,1);
 //		printQueueMemberINSERT("vip",10,8086,8095);
 		
-//		printExtenAndOutline(8861,8866,31268888);
+		printExtenAndOutline(8500,8547,"31268888");
 //		printExtenAndOutline(8877,8877,31268888);
 
 		
