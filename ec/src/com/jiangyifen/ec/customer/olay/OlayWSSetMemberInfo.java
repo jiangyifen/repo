@@ -19,10 +19,10 @@ import com.jiangyifen.ec.customer.olay.ws.MyOlayIVRSrvPortType;
 import com.jiangyifen.ec.customer.olay.ws.RemoteException;
 import com.jiangyifen.ec.customer.olay.ws.WebReturnObject;
 
-public class OlayWSSetMemberInfoTest extends BaseAgiScript {
+public class OlayWSSetMemberInfo extends BaseAgiScript {
 
 	private static Logger logger = LoggerFactory
-			.getLogger(OlayWSSetMemberInfoTest.class);
+			.getLogger(OlayWSSetMemberInfo.class);
 
 	private static MyOlayIVRSrv srv = null;
 
@@ -30,7 +30,7 @@ public class OlayWSSetMemberInfoTest extends BaseAgiScript {
 
 	private static void initClient() {
 		try {
-			URL url = new URL(OlayGlobalData.testIVRPointQueryWSDL);
+			URL url = new URL(OlayGlobalData.IVRPointQueryWSDL);
 			srv = new MyOlayIVRSrv(url);
 			pt = srv.getMyOlayIVRSrvHttpPort();
 		} catch (MalformedURLException e) {
