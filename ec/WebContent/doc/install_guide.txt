@@ -155,6 +155,7 @@ chmod +x tomcat/bin/*.sh
 
 edit /etc/rc.local
 source /etc/profile
+ntpdate 0.pool.ntp.org
 /opt/apache-tomcat-6.0.20/bin/startup.sh
 
 *Install EC

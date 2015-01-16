@@ -170,8 +170,9 @@ public class GetChartQueueIncomingWorkloadAction extends BaseAction {
 			}
 
 			String sql = "select " + p1 + " , " + p2
-					+ " as workload from cdr t where fenji is not null and name<>'0' and username<>'0' and"
-					+ " disposition='ANSWER' and dcontext='incoming' and "
+					+ " as workload from cdr t where fenji is not null "
+//					+ "and name<>'0' and username<>'0' "
+					+ "and disposition='ANSWER' and dcontext='incoming' and "
 					+ whereSql + "t.calldate >= '" + beginTime
 					+ " 00:00:00' and " + "t.calldate <= '" + endTime
 					+ " 23:59:59' " + "group by " + p1 + " " + "order by " + p3
@@ -301,8 +302,9 @@ public class GetChartQueueIncomingWorkloadAction extends BaseAction {
 			}
 
 			String sql = "select " + p1 + " , " + p2
-					+ " as workload from cdr t where fenji is not null and name<>'0' and username<>'0' and"
-					+ " dcontext='incoming' and " + whereSql
+					+ " as workload from cdr t where fenji is not null "
+//					+ "and name<>'0' and username<>'0' "
+					+ "and dcontext='incoming' and " + whereSql
 					+ "t.calldate >= '" + beginTime + " 00:00:00' and "
 					+ "t.calldate <= '" + endTime + " 23:59:59' " + "group by "
 					+ p1 + " " + "order by " + p3 + "";
