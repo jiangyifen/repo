@@ -159,7 +159,7 @@ public class GetChartOverallReportNewAction extends BaseAction {
 			}
 
 			// 自助语音量
-			sql = "select SUBSTRING(date::text,12,2),node,count(*) from ec_ivr_log where node='1_jfdh' and date>='"
+			sql = "select SUBSTRING(date::text,12,2),node,count(*) from ec_ivr_log where node='1_zzdh' and date>='"
 					+ beginTime
 					+ " 00:00:00' and date<='"
 					+ endTime
