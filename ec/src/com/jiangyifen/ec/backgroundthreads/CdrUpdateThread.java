@@ -69,7 +69,7 @@ public class CdrUpdateThread extends Thread {
 
 				disposition = URLEncoder.encode(disposition, "utf-8");
 
-				urlString = urlString + "type=" + type + "&calldate="
+				urlString = urlString + "method=Agent_Hangup"+ "&type=" + type + "&calldate="
 						+ calldate + "&dcontext=" + dcontext + "&disposition="
 						+ disposition + "&src=" + src + "&dst=" + dst
 						+ "&duration=" + duration + "&uniqueid=" + uniqueid

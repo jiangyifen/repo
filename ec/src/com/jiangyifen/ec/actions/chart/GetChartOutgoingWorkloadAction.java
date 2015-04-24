@@ -308,7 +308,7 @@ public class GetChartOutgoingWorkloadAction extends BaseAction {
 			} else {
 				p1 = "dpmt";
 			}
-			p1="u.name";//强制按姓名
+//			p1="u.name";//强制按姓名
 
 			if (orderByWorkload != null && !orderByWorkload.equals("false")) {
 				p3 = "workload desc";
@@ -339,14 +339,16 @@ public class GetChartOutgoingWorkloadAction extends BaseAction {
 			sip = sip.substring(0, sip.length() - 1);
 			whereSql = whereSql + " src in (" + sip + ") and ";
 
-			String sql1 = "select t.username,"
+			String sql1 = "select src,"
 					+ p1
-					+ " , count(*) as workload, round(sum(t.duration)/"+t+",2) from cdr t,ec_user u where t.username=u.username and "// name<>'0' and username<>'0' and
+					+ " , count(*) as workload, round(sum(t.duration)/"+t+",2) from cdr t where "// name<>'0' and username<>'0' and
 					+ " disposition='ANSWER' and dcontext='outgoing' and "
 					+ whereSql + "t.calldate >= '" + beginTime
 					+ " 00:00:00' and " + "t.calldate <= '" + endTime
-					+ " 23:59:59' " + "group by t.username," + p1 + " order by " + p3;
+					+ " 23:59:59' " + "group by src order by src";
 
+			
+			
 			logger.info(sql1);
 			statement = con.prepareStatement(sql1);
 			rs1 = statement.executeQuery();
@@ -359,13 +361,13 @@ public class GetChartOutgoingWorkloadAction extends BaseAction {
 				result1.put(l_username,rs1.getString(2) + ","+ rs1.getString(3)+ ","+ rs1.getString(4));
 			}
 			
-			String sql2 = "select t.username,"
+			String sql2 = "select src,"
 					+ p1
-					+ " , count(*) as workload, round(sum(t.duration)/"+t+",2) from cdr t,ec_user u where t.username=u.username and "//name<>'0' and username<>'0' and 
+					+ " , count(*) as workload, round(sum(t.duration)/"+t+",2) from cdr t where "//name<>'0' and username<>'0' and 
 					+ " disposition<>'ANSWER' and dcontext='outgoing' and  "
 					+ whereSql + "t.calldate >= '" + beginTime
 					+ " 00:00:00' and " + "t.calldate <= '" + endTime
-					+ " 23:59:59' " + "group by t.username," + p1 + " order by " + p3;
+					+ " 23:59:59' " + "group by src order by src";
 
 			logger.info(sql2);
 			statement = con.prepareStatement(sql2);

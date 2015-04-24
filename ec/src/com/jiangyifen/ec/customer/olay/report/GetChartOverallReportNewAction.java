@@ -108,7 +108,7 @@ public class GetChartOverallReportNewAction extends BaseAction {
 					+ beginTime
 					+ " 00:00:00' and date<='"
 					+ endTime
-					+ " 23:59:59' and (node='3' or node='2' or node='normal_ivr_1' or node='normal_ivr_2') group by substring(date::text,12,2) order by substring(date::text,12,2);";
+					+ " 23:59:59' and (node='queue_vip_request' or node='queue_normal_request') group by substring(date::text,12,2) order by substring(date::text,12,2);";
 			logger.info(sql);
 			statement = con.prepareStatement(sql);
 			rs = statement.executeQuery();
@@ -207,7 +207,7 @@ public class GetChartOverallReportNewAction extends BaseAction {
 			for (int i = 0; i <= 23; i++) {
 				String time = i + ":00 ~ " + (i + 1) + ":00";
 				int l_totalIncomingCount = totalIncomingCount[i];
-//				int l_totalRengongCount = totalRengongCount[i];
+				int l_totalRengongCount = totalRengongCount[i];
 				int l_totalQueueEntryCount = totalQueueEntryCount[i];
 //				int l_totalQueueEntryAbandonCount = totalQueueEntryAbandonCount[i];
 				int l_totalIVRCount = totalIVRCount[i];
@@ -218,7 +218,7 @@ public class GetChartOverallReportNewAction extends BaseAction {
 
 				String result = time + "," 
 						+ l_totalIncomingCount + ","
-//						+ l_totalRengongCount + "," 
+						+ l_totalRengongCount + "," 
 						+ l_totalQueueEntryCount + "," 
 //						+ l_totalQueueEntryAbandonCount + ","
 						+ l_totalQueueEntryAnswerCount + ","
@@ -293,21 +293,24 @@ public class GetChartOverallReportNewAction extends BaseAction {
 			cell.setCellValue("呼入总量");
 
 			cell = row.createCell(2);
+			cell.setCellValue("队列请求量");
+			
+			cell = row.createCell(3);
 			cell.setCellValue("队列进入量");
 
-			cell = row.createCell(3);
+			cell = row.createCell(4);
 			cell.setCellValue("接起量");
 
-			cell = row.createCell(4);
+			cell = row.createCell(5);
 			cell.setCellValue("接起率");
 
-			cell = row.createCell(5);
+			cell = row.createCell(6);
 			cell.setCellValue("自助语音量");
 
-			cell = row.createCell(6);
+			cell = row.createCell(7);
 			cell.setCellValue("自主挂断量");
 
-			cell = row.createCell(7);
+			cell = row.createCell(8);
 			cell.setCellValue("留言量");
 
 			for (int rownum = 0; rownum < excelResult.size(); rownum++) {
